@@ -210,11 +210,25 @@
     }
 
     /* Contact */
-    .contact-info {
-        max-width: 600px;
-        margin: 0 auto 2rem;
-        font-size: 1.1rem;
-    }
+    .contact {
+    width: 100%;
+    margin: 4rem 0;
+    padding: 3rem 2rem;
+    background: var(--bg-white);
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards;
+}
+
+/* Container interno per 'centratura' e max width */
+
+#contact .contact-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
     .contact-info p {
         margin-bottom: 0.75rem;
     }
@@ -392,7 +406,8 @@
 
 <section id="contact">
     <h2>Contatti</h2>
-    <div class="container contact-info">
+    <div class="contact-container">
+     <div class="contact-info container">
         <p><strong>Indirizzo:</strong> Via del Progresso 34, 61122 Pesaro PU, Italia</p>
         <p><strong>Email:</strong> <a href="mailto:info@simoneligi.it">info@simoneligi.it</a></p>
         <p><strong>Telefono:</strong> <a href="tel:0721202316">0721 202316</a></p>
