@@ -228,6 +228,14 @@
         footer a:hover {
             text-decoration: underline;
         }
+        .contact-info {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .contact-info strong {
+            display: inline-block;
+            width: 110px;
+        }
         @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 2rem;
@@ -323,6 +331,14 @@
 
     <section id="contact">
         <h2>Contatti</h2>
+        <div class="container contact-info">
+            <p><strong>Indirizzo:</strong> Via del Progresso 34, 61122 Pesaro PU, Italia</p>
+            <p><strong>Email:</strong> <a href="mailto:info@simoneligi.it">info@simoneligi.it</a></p>
+            <p><strong>Telefono:</strong> <a href="tel:0721202316">0721 202316</a></p>
+            <p><strong>Cellulare:</strong> <a href="tel:+393355418693">+39 335 541 8693</a></p>
+            <p><strong>Partita IVA:</strong> 01158760411</p>
+            <p><strong>Albo dei Geometri:</strong> n. 1258 della Provincia di Pesaro-Urbino</p>
+        </div>
         <form action="send_email.php" method="POST" class="container">
             <div class="form-group">
                 <label for="name">Nome *</label>
@@ -346,8 +362,25 @@
         </form>
     </section>
 
+    <section id="social" class="container" style="text-align:center; margin-bottom:3rem;">
+        <h2>Seguimi sui social</h2>
+        <a href="https://wa.me/393355418693" target="_blank" style="margin-right:1.5rem; font-size:1.5rem; color: #25D366; text-decoration:none;" aria-label="WhatsApp">
+            📱 WhatsApp
+        </a>
+        <a href="https://www.facebook.com/simone.ligi.142?locale=it_IT" target="_blank" style="font-size:1.5rem; color: #3b5998; text-decoration:none;" aria-label="Facebook">
+            📘 Facebook
+        </a>
+    </section>
+
     <footer>
-        <p>&copy; 2025 Simone Ligi - Geometra Professionista - <a href="mailto:info@geometraligisimone.it">info@geometraligisimone.it</a> - Tel: +39 338 1234567</p>
+        <p>&copy; 2025 Simone Ligi - Geometra Professionista - <a href="mailto:info@simoneligi.it">info@simoneligi.it</a> - Tel: <a href="tel:0721202316" style="color:white; text-decoration:underline;">0721 202316</a></p>
+        <p>Partita IVA 01158760411 - Iscritto all'Albo dei Geometri della Provincia di Pesaro-Urbino al n. 1258</p>
+        <p>
+            Seguimi su 
+            <a href="https://wa.me/393355418693" target="_blank" style="color: white; text-decoration: underline;">WhatsApp</a> 
+            e 
+            <a href="https://www.facebook.com/simone.ligi.142?locale=it_IT" target="_blank" style="color: white; text-decoration: underline;">Facebook</a>
+        </p>
     </footer>
 </body>
 </html>
