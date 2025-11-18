@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- URL della home page -->
+  <url>
+    <loc>https://www.geometraligisimone.it/</loc>
+    <lastmod>2024-11-11</lastmod>  <!-- Data di ultima modifica -->
+    <changefreq>daily</changefreq>  <!-- Frequenza di aggiornamento -->
+    <priority>1.0</priority>  <!-- Priorità della pagina -->
+  </url>
+
+  <!-- URL della pagina "Chi siamo" -->
+  <url>
+    <loc>https://www.geometraligisimone.it/chi-siamo</loc>
+    <lastmod>2024-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- URL della pagina "Servizi" -->
+  <url>
+    <loc>https://www.geometraligisimone.it/servizi</loc>
+    <lastmod>2024-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- URL della pagina "Contatti" -->
+  <url>
+    <loc>https://www.geometraligisimone.it/contatti</loc>
+    <lastmod>2024-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Aggiungi altre pagine se necessario -->
+</urlset>
