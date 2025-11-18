@@ -14,18 +14,16 @@
         --bg-light: #f6f9fc;
         --bg-white: #ffffff;
     }
-    * {
-        margin: 0; padding: 0; box-sizing: border-box;
-    }
+    * {margin:0; padding:0; box-sizing:border-box;}
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
         line-height: 1.6;
         background: linear-gradient(-45deg, #2375A3, #185a7e, #FFB627, #f6f9fc);
-        background-size: 400% 400%;
+        background-size:400% 400%;
         animation: GradientBG 15s ease infinite;
-        color: var(--text-dark);
-        min-height: 100vh;
-        overflow-x: hidden;
+        color:var(--text-dark);
+        min-height:100vh;
+        overflow-x:hidden;
     }
     @keyframes GradientBG {
         0% {background-position:0% 50%;}
@@ -33,78 +31,68 @@
         100% {background-position:0% 50%;}
     }
     header {
-        background: rgba(35, 117, 163,0.9);
-        backdrop-filter: saturate(180%) blur(10px);
-        color: white;
-        padding: 1rem 2rem;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 999;
-        box-shadow: 0 2px 6px rgb(0 0 0 / 0.3);
+        background: rgba(35,117,163,0.9);
+        backdrop-filter:saturate(180%) blur(10px);
+        color:white;
+        padding:1rem 2rem;
+        position:fixed;
+        width:100%;
+        top:0;
+        z-index:999;
+        box-shadow:0 2px 6px rgb(0 0 0 / 0.3);
     }
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+    .container {max-width:1200px; margin:0 auto;}
     .header-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        display:flex; justify-content:space-between; align-items:center;
     }
     .logo {
-        font-size: 2rem;
-        font-weight: bold;
-        color: white;
-        text-decoration: none;
+        font-size:2rem; font-weight:bold; color:white; text-decoration:none;
     }
     nav ul {
-        list-style: none;
-        display: flex;
-        gap: 1.5rem;
+        list-style:none; display:flex; gap:1.5rem;
     }
     nav a {
-        color: white;
-        text-decoration: none;
-        font-weight: 600;
-        transition: color 0.3s ease-in-out;
+        color:white; text-decoration:none; font-weight:600; transition:color 0.3s;
     }
-    nav a:hover {
-        color: var(--accent);
+    nav a:hover {color:var(--accent);}
+    /* Animated Section */
+    .section-animated {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+        filter: blur(2px);
+        transition:
+            opacity 0.7s cubic-bezier(0.165,0.84,0.44,1),
+            transform 0.7s cubic-bezier(0.165,0.84,0.44,1),
+            filter 0.7s cubic-bezier(0.165,0.84,0.44,1);
     }
-
-    /* Hero section */
+    .section-animated.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1.00);
+        filter: blur(0);
+    }
+    /* Hero */
     .hero {
-        padding-top: 100px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 70vh;
-        text-align: center;
-        color: white;
-        position: relative;
+        padding-top:100px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        min-height:70vh;
+        text-align:center;
+        color:white;
+        position:relative;
     }
     .hero-content {
-        background-color: rgba(0,0,0,0.4);
-        padding: 2rem 3rem;
-        border-radius: 12px;
-        max-width: 700px;
+        background-color:rgba(0,0,0,0.4);
+        padding:2rem 3rem;
+        border-radius:12px;
+        max-width:700px;
         animation: fadeInUp 1.2s ease forwards;
-        opacity: 0;
-        transform: translateY(20px);
+        opacity:0;
+        transform:translateY(20px);
     }
-    @keyframes fadeInUp {
-        to {opacity:1; transform:none;}
-    }
-    .hero-content h1 {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-    }
-    .hero-content p {
-        font-size: 1.4rem;
-        margin-bottom: 1.5rem;
-        line-height: 1.4;
-    }
+    @keyframes fadeInUp {to{opacity:1;transform:none;} }
+    .hero-content h1 {font-size:3rem; margin-bottom:1rem;}
+    .hero-content p {font-size:1.4rem; margin-bottom:1.5rem; line-height:1.4;}
     .cta-button {
         background-color: var(--accent);
         color: var(--text-dark);
@@ -112,160 +100,119 @@
         padding: 1rem 2.5rem;
         border-radius: 6px;
         text-decoration: none;
-        transition: background-color 0.3s ease;
-        display: inline-block;
+        transition:background-color 0.3s;
+        display:inline-block;
+        box-shadow:0 4px 12px rgba(35,117,163,0.09);
     }
-    .cta-button:hover {
-        background-color: #e6a120;
-    }
-
-    /* Section styling */
+    .cta-button:hover {background:#e6a120;}
+    /* Section */
     section {
-        background: var(--bg-white);
-        border-radius: 16px;
-        box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-        max-width: 1000px;
-        margin: 4rem auto;
-        padding: 3rem 2rem;
-        animation: fadeInUp 1s ease forwards;
-        opacity: 0;
-        transform: translateY(30px);
+        background:var(--bg-white);
+        border-radius:16px;
+        box-shadow:0 12px 24px rgba(0,0,0,0.1);
+        max-width:1000px;
+        margin:4rem auto;
+        padding:3rem 2rem;
     }
     section h2 {
-        color: var(--primary);
-        text-align: center;
-        margin-bottom: 2rem;
-        font-size: 2.5rem;
-        font-weight: 700;
+        color:var(--primary); text-align:center; margin-bottom:2rem; font-size:2.5rem; font-weight:700;
+        letter-spacing: -1px;
     }
     .about-text p {
-        font-size: 1.2rem;
-        line-height: 1.6;
-        color: var(--text-light);
-        max-width: 800px;
-        margin: 0 auto 1rem;
+        font-size:1.2rem; line-height:1.6; color:var(--text-light); max-width:800px; margin:0 auto 1rem;
     }
-
     /* Services */
     .services-list {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:2rem;
     }
     .service-item {
-        background: var(--bg-light);
-        padding: 2rem 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.05);
-        font-weight: 500;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background:var(--bg-light);
+        padding:2rem 1.5rem;
+        border-radius:12px;
+        box-shadow:0 8px 16px rgba(0,0,0,0.05);
+        font-weight:500;
+        transition:transform 0.3s, box-shadow 0.3s;
+        cursor:pointer;
+        will-change:transform;
+        position: relative;
+        overflow: hidden;
+    }
+    .service-item::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;top: 0; width: 100%;height: 100%;
+        pointer-events:none;
+        opacity:0.12;
+        background: repeating-linear-gradient(45deg, var(--accent), var(--accent) 8px, transparent 8px, transparent 16px);
     }
     .service-item:hover {
         background-color: var(--primary);
         color: white;
-        transform: translateY(-12px);
-        box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        transform: translateY(-14px) scale(1.04);
+        box-shadow: 0 24px 64px rgba(35,117,163,0.15),0 2px 9px rgba(35,117,163,0.14);
     }
-    .service-item h3 {
-        font-size: 1.25rem;
-        margin-bottom: 1rem;
-    }
-
+    .service-item h3 {font-size:1.25rem; margin-bottom:1rem;}
     /* Portfolio */
     .portfolio-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-        gap: 2rem;
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+        gap:2rem;
     }
     .portfolio-card {
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius:12px;
+        overflow:hidden;
+        box-shadow:0 8px 20px rgba(0,0,0,0.1);
+        cursor:pointer;
+        transition:transform 0.3s, box-shadow 0.3s;
+        will-change:transform;
+        background:linear-gradient(135deg,var(--bg-white) 80%,var(--accent) 120%);
     }
     .portfolio-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+        transform: translateY(-10px) scale(1.03);
+        box-shadow:0 16px 40px rgba(0,0,0,0.2);
     }
     .portfolio-image {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        display: block;
+        width:100%;
+        height:200px;
+        object-fit:cover;
+        display:block;
     }
-    .portfolio-details {
-        padding: 1rem 1.25rem;
-        background: white;
-    }
-    .portfolio-details h3 {
-        margin-bottom: 0.75rem;
-        color: var(--primary);
-        font-weight: 700;
-    }
-    .portfolio-details p {
-        color: var(--text-light);
-        font-size: 1rem;
-        line-height: 1.4;
-    }
-
+    .portfolio-details {padding:1rem 1.25rem; background:white;}
+    .portfolio-details h3 {margin-bottom:0.75rem; color:var(--primary); font-weight:700;}
+    .portfolio-details p {color:var(--text-light); font-size:1rem; line-height:1.4;}
     /* Contact */
-    .contact {
-    width: 100%;
-    margin: 4rem 0;
-    padding: 3rem 2rem;
-    background: var(--bg-white);
-    border-radius: 16px 16px 0 0;
-    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 1s ease forwards;
-}
-
-/* Container interno per 'centratura' e max width */
-
-#contact .contact-container {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-    .contact-info p {
-        margin-bottom: 0.75rem;
-    }
-    .contact-info strong {
-        display: inline-block;
-        width: 140px;
-    }
-    form {
-        background: var(--bg-light);
-        max-width: 650px;
-        margin: 0 auto;
-        padding: 2rem;
-        border-radius: 12px;
+    #contact {
+        width: 100%;
+        margin: 4rem 0;
+        padding: 3rem 2rem;
+        background: var(--bg-white);
+        border-radius: 16px 16px 0 0;
         box-shadow: 0 12px 24px rgba(0,0,0,0.1);
     }
-    .form-group {
-        margin-bottom: 1.5rem;
+    #contact .contact-container {max-width:1000px; margin:0 auto;}
+    .contact-info {
+        max-width:600px; margin:0 auto 2rem; font-size:1.1rem;
     }
-    label {
-        display: block;
-        font-weight: 600;
-        color: var(--text-dark);
-        margin-bottom: 0.4rem;
+    .contact-info p {margin-bottom:0.75rem;}
+    .contact-info strong {display:inline-block; width:140px;}
+    form {
+        background:var(--bg-light);
+        max-width:650px;
+        margin:0 auto;
+        padding:2rem;
+        border-radius:12px;
+        box-shadow:0 12px 24px rgba(0,0,0,0.1);
     }
-    input, textarea {
-        width: 100%;
-        padding: 0.9rem 1rem;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        font-size: 1rem;
-        resize: vertical;
-        transition: border-color 0.3s ease;
+    .form-group {margin-bottom:1.5rem;}
+    label {display:block; font-weight:600; color:var(--text-dark); margin-bottom:0.4rem;}
+    input,textarea {
+        width:100%; padding:0.9rem 1rem; border-radius:8px; border:1px solid #ccc; font-size:1rem; resize:vertical;
+        transition: border-color 0.3s;
     }
-    input:focus, textarea:focus {
-        border-color: var(--primary);
-        outline: none;
-    }
+    input:focus,textarea:focus {border-color:var(--primary);}
     button {
         background-color: var(--primary);
         color: white;
@@ -274,67 +221,42 @@
         padding: 1.2rem 3rem;
         border-radius: 8px;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s;
     }
-    button:hover {
-        background-color: var(--primary-dark);
-    }
-
+    button:hover {background-color:var(--primary-dark);}
     /* Social */
     #social {
-        text-align: center;
-        margin: 3rem 0;
-    }
-    #social h2 {
-        font-weight: 700;
-        margin-bottom: 1rem;
-        color: var(--primary);
-        font-size: 2rem;
-    }
-    #social a {
-        font-size: 2rem;
-        margin: 0 1.5rem;
-        color: inherit;
-        text-decoration: none;
-        transition: opacity 0.3s ease;
-    }
-    #social a:hover {
-        opacity: 0.7;
-    }
+    width: 100%;
+    padding: 2rem 0;
+    background: var(--bg-white);
+}
+.social-container {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
 
     /* Footer */
     footer {
-        background: var(--primary);
-        color: white;
-        text-align: center;
-        padding: 2rem 1rem;
+        background:var(--primary);
+        color:white;
+        text-align:center;
+        padding:2rem 1rem;
     }
-    footer p {
-        margin: 0.2rem 0;
+    footer p {margin:0.2rem 0;}
+    footer a {color:var(--accent); font-weight:700; text-decoration:none;}
+    footer a:hover {text-decoration:underline;}
+    @media (max-width:992px){
+        .services-list{grid-template-columns:1fr 1fr;}
     }
-    footer a {
-        color: var(--accent);
-        font-weight: 700;
-        text-decoration: none;
+    @media (max-width:600px){
+        .services-list{grid-template-columns:1fr;}
+        .portfolio-grid{grid-template-columns:1fr;}
+        .hero-content h1{font-size:2rem;}
     }
-    footer a:hover {
-        text-decoration: underline;
-    }
-
-    /* Responsive */
-    @media (max-width: 992px) {
-        .services-list { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 600px) {
-        .services-list { grid-template-columns: 1fr; }
-        .portfolio-grid { grid-template-columns: 1fr; }
-        .hero-content h1 { font-size: 2rem; }
-    }
-
 </style>
 </head>
 <body>
-
 <header>
     <div class="container header-content">
         <a href="#home" class="logo">Simone Ligi</a>
@@ -348,24 +270,21 @@
         </nav>
     </div>
 </header>
-
-<section id="home" class="hero">
+<section id="home" class="hero section-animated">
     <div class="hero-content">
         <h1>Geometra Simone Ligi</h1>
         <p>Servizi professionali di rilievi topografici, pratiche catastali, progettazione e consulenze.</p>
         <a href="#contact" class="cta-button">Contattami</a>
     </div>
 </section>
-
-<section id="about">
+<section id="about" class="section-animated">
     <h2>Chi Sono</h2>
     <div class="about-text container">
         <p>Ciao, sono Simone Ligi, geometra professionista con anni di esperienza nel settore. Offro servizi precisi e affidabili per soddisfare ogni esigenza tecnica e catastale.</p>
         <p>Mi occupo di rilievi topografici, progettazione, pratiche catastali e consulenze per privati e aziende.</p>
     </div>
 </section>
-
-<section id="services">
+<section id="services" class="section-animated">
     <h2>Servizi</h2>
     <div class="services-list container">
         <div class="service-item"><h3>Rilievi Topografici</h3><p>Misurazioni e rappresentazioni precise del territorio.</p></div>
@@ -376,26 +295,25 @@
         <div class="service-item"><h3>Certificazioni Energetiche</h3><p>Analisi e certificazione energetica degli edifici secondo legge.</p></div>
     </div>
 </section>
-
-<section id="portfolio">
+<section id="portfolio" class="section-animated">
     <h2>Portfolio</h2>
     <div class="portfolio-grid container">
         <div class="portfolio-card">
-            <img class="portfolio-image" src="https://www.cristianpoli.it/wp-content/uploads/2017/07/iStock-514157640.jpg" alt="Rilievi Topografici"/>
+            <img class="portfolio-image" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=60" alt="Rilievo Topografico"/>
             <div class="portfolio-details">
-                <h3>Rilievi Topografici</h3>
+                <h3>Rilievo Topografico</h3>
                 <p>Un rilievo preciso effettuato per un terreno rurale.</p>
             </div>
         </div>
         <div class="portfolio-card">
-            <img class="portfolio-image" src="data:image/jpeg;base64,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" alt="Progettazione Edilizia"/>
+            <img class="portfolio-image" src="https://images.unsplash.com/photo-1505057457-d80dbf8b9bd2?auto=format&fit=crop&w=700&q=60" alt="Progettazione Edilizia"/>
             <div class="portfolio-details">
                 <h3>Progettazione Edilizia</h3>
                 <p>Progetto per una struttura abitativa secondo le normative.</p>
             </div>
         </div>
         <div class="portfolio-card">
-            <img class="portfolio-image" src="https://www.approjects.it/wp-content/uploads/2021/02/pratiche-catastali-1.jpeg" alt="Pratiche Catastali"/>
+            <img class="portfolio-image" src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=700&q=60" alt="Pratiche Catastali"/>
             <div class="portfolio-details">
                 <h3>Pratiche Catastali</h3>
                 <p>Aggiornamento e registrazione catastale per un immobile urbano.</p>
@@ -403,60 +321,51 @@
         </div>
     </div>
 </section>
-
-<section id="contact">
+<section id="contact" class="section-animated">
     <h2>Contatti</h2>
     <div class="contact-container">
-     <div class="contact-info container">
-        <p><strong>Indirizzo:</strong> Via del Progresso 34, 61122 Pesaro PU, Italia</p>
-        <p><strong>Email:</strong> <a href="mailto:info@simoneligi.it">info@simoneligi.it</a></p>
-        <p><strong>Telefono:</strong> <a href="tel:0721202316">0721 202316</a></p>
-        <p><strong>Cellulare:</strong> <a href="tel:+393355418693">+39 335 541 8693</a></p>
-        <p><strong>Partita IVA:</strong> 01158760411</p>
-        <p><strong>Albo dei Geometri:</strong> n. 1258 della Provincia di Pesaro-Urbino</p>
-    </div>
-    <form action="send_email.php" method="POST" class="container">
-        <div class="form-group"><label for="name">Nome *</label><input type="text" id="name" name="name" required/></div>
-        <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required/></div>
-        <div class="form-group"><label for="phone">Telefono</label><input type="tel" id="phone" name="phone"/></div>
-        <div class="form-group"><label for="message">Messaggio *</label><textarea id="message" name="message" required></textarea></div>
-        <div class="form-group"><button type="submit">Invia Messaggio</button></div>
-    </form>
-</section>
-
-<section id="social" style="width:100%; background:var(--bg-white); padding:2rem 0;">
-    <div style="max-width:700px; margin:0 auto; text-align:center;">
-        <h2 style="color:var(--primary); font-size:2.1rem; margin-bottom:1.5rem;">Contattaci su</h2>
-        <a href="https://wa.me/393355418693" target="_blank" style="display:inline-block; margin:0 2rem 0 0; font-size:1.6rem; color:#25D366; text-decoration:none;"><span style="vertical-align:middle;">📱 WhatsApp</span></a>
-        <a href="https://www.facebook.com/simone.ligi.142?locale=it_IT" target="_blank" style="display:inline-block; font-size:1.6rem; color:#3b5998; text-decoration:none;"><span style="vertical-align:middle;">📘 Facebook</span></a>
+        <div class="contact-info container">
+            <p><strong>Indirizzo:</strong> Via del Progresso 34, 61122 Pesaro PU, Italia</p>
+            <p><strong>Email:</strong> <a href="mailto:info@simoneligi.it">info@simoneligi.it</a></p>
+            <p><strong>Telefono:</strong> <a href="tel:0721202316">0721 202316</a></p>
+            <p><strong>Cellulare:</strong> <a href="tel:+393355418693">+39 335 541 8693</a></p>
+            <p><strong>Partita IVA:</strong> 01158760411</p>
+            <p><strong>Albo dei Geometri:</strong> n. 1258 della Provincia di Pesaro-Urbino</p>
+        </div>
+        <form action="send_email.php" method="POST" class="container">
+            <div class="form-group"><label for="name">Nome *</label><input type="text" id="name" name="name" required/></div>
+            <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required/></div>
+            <div class="form-group"><label for="phone">Telefono</label><input type="tel" id="phone" name="phone"/></div>
+            <div class="form-group"><label for="message">Messaggio *</label><textarea id="message" name="message" required></textarea></div>
+            <div class="form-group"><button type="submit">Invia Messaggio</button></div>
+        </form>
     </div>
 </section>
-
-
+<section id="social" class="section-animated" style="width:100%; background:var(--bg-white); padding:2rem 0;">
+    <div class="social-container">
+        <h2>Contattaci su</h2>
+        <a href="https://wa.me/393355418693" target="_blank"><span style="vertical-align:middle;">📱 WhatsApp</span></a>
+        <a href="https://www.facebook.com/simone.ligi.142?locale=it_IT" target="_blank"><span style="vertical-align:middle;">📘 Facebook</span></a>
+    </div>
+</section>
 <footer>
     <p>&copy; 2025 Simone Ligi - Geometra Professionista - <a href="mailto:info@simoneligi.it">info@simoneligi.it</a> - Tel: <a href="tel:0721202316" style="color:white; text-decoration:underline;">0721 202316</a></p>
     <p>Partita IVA 01158760411 - Iscritto all'Albo dei Geometri della Provincia di Pesaro-Urbino al n. 1258</p>
-    <p>Contattaci su <a href="https://wa.me/393355418693" target="_blank" style="color:white; text-decoration:underline;">WhatsApp</a> e <a href="https://www.facebook.com/simone.ligi.142?locale=it_IT" target="_blank" style="color:white; text-decoration:underline;">Facebook</a></p>
+    <p>Contattaci su <a href="https://wa.me/393355418693" target="_blank" style="color:white; text-decoration:underline;">WhatsApp</a>
+       e <a href="https://www.facebook.com/simone.ligi.142?locale=it_IT" target="_blank" style="color:white; text-decoration:underline;">Facebook</a></p>
 </footer>
-
 <script>
-    const sections = document.querySelectorAll('section');
-    const observerOptions = {threshold: 0.1};
-    const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'none';
-                obs.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        observer.observe(section);
+const animatedSections = document.querySelectorAll('.section-animated');
+const obsOpt = { threshold: 0.2 };
+const obs = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
     });
+}, obsOpt);
+animatedSections.forEach(sec => obs.observe(sec));
 </script>
-
 </body>
 </html>
