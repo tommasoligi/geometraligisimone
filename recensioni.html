@@ -50,12 +50,9 @@
         <h2 class="text-center">Aggiungi la tua recensione</h2>
     </section>
     <form id="reviewForm">
-        <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" class="form-control mb-3" required>
-
-        <label for="review">Recensione:</label>
-        <textarea id="review" name="review" class="form-control mb-3" rows="4" required></textarea>
-        
+    <input type="text" id="name" name="nome" required placeholder="Il tuo nome" />
+    <textarea id="review" name="testo" required placeholder="La tua recensione"></textarea>
+    <div class="star-rating">
         <!-- Selezione delle stelle -->
         <div class="form-group">
             <label for="rating">Valutazione:</label><br>
@@ -68,6 +65,10 @@
             </div>
             <input type="hidden" id="starRating" name="starRating" value="0">
         </div>
+
+    </div>
+    <button type="submit">Invia Recensione</button>
+</form>
 
         <button type="submit" class="btn btn-primary">Invia recensione</button>
     </form>
@@ -263,3 +264,4 @@
 
 </body>
 </html>
+
