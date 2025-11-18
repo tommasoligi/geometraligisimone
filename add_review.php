@@ -1,5 +1,6 @@
 <?php
 header('Content-Type: application/json');
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = isset($_POST['nome']) ? trim($_POST['nome']) : '';
     $testo = isset($_POST['testo']) ? trim($_POST['testo']) : '';
