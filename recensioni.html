@@ -49,22 +49,20 @@
     <section class="contact-section py-5">
         <h2 class="text-center">Aggiungi la tua recensione</h2>
     </section>
-    <form id="reviewForm">
-    <input type="text" id="name" name="nome" required placeholder="Il tuo nome" />
-    <textarea id="review" name="testo" required placeholder="La tua recensione"></textarea>
+<form id="reviewForm">
+    <input type="text" id="name" name="nome" placeholder="Il tuo nome" required />
+    <textarea id="review" name="testo" placeholder="La tua recensione" required></textarea>
     <div class="star-rating">
-        <!-- Selezione delle stelle -->
-        <div class="form-group">
-            <label for="rating">Valutazione:</label><br>
-            <div class="star-rating" id="rating">
-                <span class="star" data-value="1">&#9733;</span>
-                <span class="star" data-value="2">&#9733;</span>
-                <span class="star" data-value="3">&#9733;</span>
-                <span class="star" data-value="4">&#9733;</span>
-                <span class="star" data-value="5">&#9733;</span>
-            </div>
-            <input type="hidden" id="starRating" name="starRating" value="0">
-        </div>
+        <span class="star" data-value="1">★</span>
+        <span class="star" data-value="2">★</span>
+        <span class="star" data-value="3">★</span>
+        <span class="star" data-value="4">★</span>
+        <span class="star" data-value="5">★</span>
+    </div>
+    <button type="submit">Invia Recensione</button>
+</form>
+<ul id="reviewsList"></ul>
+
 
     </div>
     <button type="submit">Invia Recensione</button>
@@ -264,4 +262,5 @@
 
 </body>
 </html>
+
 
