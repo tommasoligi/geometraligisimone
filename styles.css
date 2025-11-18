@@ -241,44 +241,4 @@ footer {
     }
 }
 
-/*recensioni*/
-/* Stili per le stelle */
-.star-rating {
-    display: inline-block;
-    font-size: 2em;
-    color: #ddd; /* Colore di base (vuote) */
-    cursor: pointer;
-}
 
-.star-rating .star {
-    color: #ddd; /* Colore delle stelle vuote */
-    transition: color 0.3s ease;
-}
-
-.star-rating .star.selected,
-.star-rating .star:hover {
-    color: #f9a825; /* Colore delle stelle selezionate o al passaggio del mouse */
-}
-
-.star-rating .star.full {
-    color: #f9a825; /* Colore per la stella piena */
-}
-
-.star-rating .star.empty {
-    color: #ddd; /* Colore per la stella vuota */
-}
-
-/* Aggiungi queste regole per garantire che le stelle appaiano correttamente nella recensione */
-.review-item .star-rating {
-    display: inline-block;
-    font-size: 1.5em; /* Aggiusta la dimensione per le recensioni */
-    color: #ddd;
-}
-
-.review-item .star-rating .star {
-    color: #ddd; /* Colore delle stelle vuote */
-}
-
-.review-item .star-rating .star.full {
-    color: #f9a825; /* Colore delle stelle piene */
-}
