@@ -5,7 +5,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = strip_tags(trim($_POST["phone"]));
     $message = strip_tags(trim($_POST["message"]));
 
-    // Validate email & required fields
     if (empty($name) || empty($message) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         http_response_code(400);
         echo "Errore: dati non validi.";
