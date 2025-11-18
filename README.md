@@ -1,1 +1,0 @@
-# geometra_ligi_simone
