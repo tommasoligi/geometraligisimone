@@ -1,115 +1,934 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Studio Geometra Ligi Simone</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css"> <!-- Include il tuo CSS personalizzato -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="favicon" href="/favicon.png" type="image/x-favicon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Geometra Ligi Simone - SPA</title>
+  <style>
+    :root {
+      --primary: #b85c38;
+      --secondary: #fbeee0;
+      --accent: #6f4e37;
+      --text: #222;
+      --white: #fff;
+      --radius: 10px;
+      --shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+     url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAIAAAADnC86AAAAA3NCSVQICAjb4U/gAAAFmUlEQVRYhe1Xz28kRxX+XlV3Vf+cGXts1uwidgPiQCTEMZyQco3Ev8g/wIEr4oSQELcQKQtKWLLr/eFdO2PPuGf6R3VVdz0OPXYUz0xsR0AO4d261dVffd979b1XND87wXcR4jtB/T/w/zKCb7WKiL56YOb/LrAAMQGAbY1tjRAEwHtWUaSUZgjA4857uBMwASBh6tJ1FoDSUTaeDBgEsm1dLi8JCIJQJzmY+Q74dOs5FiDnbN0s4yQLQ00kmNk0pZLa9U5pTQCEJCJrG1OVSZJLpW/V/5biIhJ1WdiuHU0OpQwF0fz8FETcdfPirDW1aZpPP/5z37ezs9eBVKO9H9jOVtXl16rgvowlxKpc6CgJQiWEfPHsk8negzjJVJSAQKBBUuHhiU9efvbg6EndVJO9A2uta6p4tM/sd/18Z44FqKqXWsdhqEF48+qfP37ycynDzrm6WhF7DJwYRBRo/fjJL5q2uvjy9Wg8DWTAcVpXRZKOdmm+nTEBvXOus3GSV+WlqeqDHz7kzq/KRagiHcXExAQwCGBiaxprmzzbpzD81+cfP3r00yjOTFUKFQSBug8wiVVxno8PmD0RvPfofdOU2WjPA9gkQSRAq+VFnOSSBKRkZiKxLGaj8eFWwbcUlwBsU0Zptl7AkExVU6ajffYckJDYKBxmzz4bTZtqBRJreZnTOLOmwrZC2wLMRK5z4bVEJFZlMRrvMXsh5aef/LU2q61Fy+zz8bQs50QCAIMDFTlnNr/cDgwwQGvbADprgijyg1oEU5cqjHadUmZWYdR39vpHIEnb/GQLsLWt0msHIJBtm0jHuFp8g+sN5gyOotQ0FYgBMCMIVefc7cBE5No2VHog7QkgL7bxC0gK+KapBUFIef2+p2E3YtAs0lHbms3UbCsuQQC1pra2IQCQfiOhQtLx86dnpyfe2RfPnv79b38RYo09nDIB7tqmbWsGDSm/ue/NV1eaDpneDCIBYn8+O/3g1x91bZuNp+w77/uvvgB40BoeG+nYyZg9A6x1qlS8WRbG1F+enizms3cnX/zpD79breZCgGT49Y0zA6GOtc4I7P2Wc7zFQJxrCQhCjcE4y8skn1w7H/dd3/cAB4Hsev/u1YvZ6at0vP/+L3/V9x2AAGJZLpJ8PGzauZZAQXjTv7YwVkrbq3JgQSpKrKmv9SIZhDoCiaqplIof/+z9Dz78DQgnx59LEiDUbaWjlEgARESuNaHSd5MaRGCA2Pdnb45DpW3b3HAr09R//P1vhRQMAvvTN8eT/UNmlhDW1qHSZ2+PO2cEaJvB7pAaRK6pRRAQidnpy4c/+knPqJaLbDLlq2wJIZpq9fL5P0bjvXJVPHj43njvgJiWy7MsO0AgmmIeRimB+r4Lo2izVnY2ibI4zycHYJTFuYziMFCmKrLRgWdeOxIRkQBDAD2xYCyX50kyCbR6+/rZZO9BnOTLYpaPpls7444JhDmOs6ZeMaF1jrwnIMuny+WFa2uJtUcwew/fE5umLFbneX7A3r85/uzo6HEaZ6Yq4iS7Xz8eCFVVocM41FG1nHe+FyTG46mzpjGVEHLoXUTkPcc6DbSeL06TOO87lya5c851NtoNvHMCYeY0ndTLOQjJaNKZ5nJxEcVxa0ycj4lIQHj2BLLOhCqcL2bc9W1TTyaHrTOtrbJs3+8efW6ZMolEU18KyDjJCbIozqSOZm9fHz163JSL8fQhEV4+f5pmh2maxOkIIFMVHoiT0TcMXLcDY2gbrjWmSnQS6JgB2zaxis8v3u1PjzwzgSUJAK21xqyiJAuC28fb24GvqbdN2fWOPYarg4BgZhDa1gztJAi1jtJvJnpvYGA9GRDgrOmsFUIC5H0fqDBUEYP+81eYdVy5fxBqFUbXrz2Yrw733ePb3RbvQ21HfP8u5t8/4H8DkJ0a5In1l38AAAAASUVORK5CYII=") repeat,
+    linear-gradient(120deg, #fbeee0 0%, #b85c38 100%);
+  background-size: 120px, 200% 200%;
+  background-repeat: repeat, no-repeat;
+  animation: bgmove 12s ease-in-out infinite alternate;
+}
+@keyframes bgmove {
+  0% { background-position: 0 0, 0% 50%; }
+  100% { background-position: 0 0, 100% 50%; }
+}
+    header {
+      background: var(--white);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo img {
+  vertical-align: middle;
+  margin-left: 0.3rem;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      position: relative;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      transition: all 0.3s;
+    }
+    .nav-links li a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .nav-links li a.active,
+    .nav-links li a:hover {
+      color: var(--primary);
+    }
+    .hamburger {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: var(--primary);
+    }
+    @media (max-width: 700px) {
+      .navbar {
+        padding: 1rem;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: var(--white);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 180px;
+        box-shadow: var(--shadow);
+        border-radius: var(--radius);
+        z-index: 200;
+        padding: 1rem 0;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+    main {
+      flex: 1 0 auto;
+      min-height: 70vh;
+    }
+    .page {
+      display: none;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+    }
+    .page.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Animazioni generali */
+    .section-animate {
+      opacity: 0;
+      transform: translateY(60px) scale(0.98);
+      transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+      will-change: opacity, transform;
+    }
+    .section-animate.in-view {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-80px);
+      transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+    }
+    .slide-in-left.in-view {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(80px);
+      transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+    }
+    .slide-in-right.in-view {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .service-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 260px;
+  opacity: 0;
+  transform: translateY(40px) scale(0.97);
+  transition: opacity 0.7s, transform 0.7s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.service-card.in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.service-card:hover {
+  box-shadow: 0 12px 32px rgba(184,92,56,0.18);
+  transform: translateY(-8px) scale(1.03);
+}
+.service-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  transition: transform 0.3s;
+}
+.service-card:hover .service-img {
+  transform: scale(1.12) rotate(-6deg);
+}
+.service-card .icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+  transition: transform 0.3s;
+}
+.service-card:hover .icon {
+  transform: rotate(10deg) scale(1.1);
+}
+.service-card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+}
+.service-card p {
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+.service-btn {
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  margin-top: auto;
+  align-self: flex-end;
+}
+.service-btn:hover {
+  background: var(--accent);
+  transform: scale(1.07);
+}
+    /* Effetti hover sulle card */
+    .service-card, .project-card, .about-content img {
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .service-card:hover, .project-card:hover {
+      box-shadow: 0 8px 32px rgba(184,92,56,0.18);
+      transform: translateY(-12px) scale(1.03);
+    }
+    .service-card .icon, .project-card img {
+      transition: transform 0.3s;
+    }
+    .service-card:hover .icon {
+      transform: rotate(10deg) scale(1.1);
+    }
+    .project-card:hover img {
+      transform: scale(1.08);
+    }
+    .about-content img:hover {
+      transform: scale(1.07);
+      box-shadow: 0 8px 32px rgba(184,92,56,0.18);
+    }
+    .cta-btn {
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .cta-btn:hover {
+      transform: scale(1.07);
+      box-shadow: 0 4px 16px rgba(184,92,56,0.12);
+      background: var(--accent);
+    }
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3rem 2rem 2rem 2rem;
+      background: var(--white);
+      min-height: 400px;
+      gap: 2rem;
+    }
+    .hero-text {
+      flex: 1 1 320px;
+    }
+    .hero-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      flex: 1 1 320px;
+    }
+    .hero-images img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      object-fit: cover;
+      height: 120px;
+      transition: transform 0.3s;
+    }
+    @media (max-width: 900px) {
+      .hero, .about-content {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .hero-images {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 700px) {
+      .hero {
+        padding: 2rem 1rem 1rem 1rem;
+      }
+    }
+    /* Servizi */
+    .services {
+      padding: 3rem 2rem;
+      background: var(--secondary);
+    }
+    .services h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 2rem;
+    }
+    .service-list {
+      display: grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap: 1.2rem;
+      margin-top: 2rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (max-width: 900px) {
+      .service-list {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .service-list {
+        grid-template-columns: 1fr;
+      }
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:1rem 1rem 0.7rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 140px;
+      max-width:260px;
+      margin:0 auto;
+      opacity: 0;
+      transform: translateY(40px)scale(0.97);
+      transition: opacity 0.7s, transform 0.7s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.7s forwards;
+    }
+    .service-card.in-view {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .service-card:hover {
+      box-shadow: 0 8px 32px rgba(184,92,56,0.18);
+      transform: translateY(-8px) scale(1.03);
+    }
+    .service-img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+      transition: transform 0.3s;
+    }
+    .service-card:hover .service-img {
+      transform: scale(1.12) rotate(-6deg);
+    }
+    .service-card .icon {
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+      color: var(--primary);
+      transition: transform 0.3s;
+    }
+    .service-card:hover .icon {
+      transform: rotate(10deg) scale(1.1);
+    }
+    .service-card h3 {
+      margin-bottom: 0.3rem;
+      color: var(--accent);
+      font-size: 1.05rem;
+    }
+    .service-card p {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .service-btn {
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      margin-top: auto;
+      align-self: flex-end;
+    }
+    .service-btn:hover {
+      background: var(--accent);
+      transform: scale(1.07);
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Progetti */
+    .projects {
+      padding: 3rem 2rem;
+      background: var(--secondary);
+    }
+    .projects h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 2rem;
+    }
+    .projects-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .project-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .project-card h3 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-size: 1.15rem;
+    }
+    .project-card p {
+      color: var(--text);
+      font-size: 1rem;
+    }
+    .project-card > div {
+      padding: 1.2rem;
+    }
+    @media (max-width: 700px) {
+      .projects-list {
+        grid-template-columns: 1fr;
+      }
+      .project-card img {
+        height: 140px;
+      }
+    }
+    /* Profilo */
+    .about {
+      padding: 3rem 2rem;
+      background: var(--secondary);
+    }
+    .about h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 2rem;
+    }
+    .about-content {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .about-content img {
+      width: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .about-content div {
+      flex: 1;
+    }
+    .about-content h3 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .about-content ul {
+      margin-top: 1rem;
+      padding-left: 1.2rem;
+    }
+    /* Contatti */
+    .contact {
+      padding: 3rem 2rem;
+      background: var(--white);
+    }
+    .contact h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 2rem;
+    }
+    form {
+      max-width: 500px;
+      margin: 0 auto 2rem auto;
+      background: var(--secondary);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: var(--accent);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #ddd;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      background: var(--white);
+      color: var(--text);
+      transition: border 0.2s;
+    }
+    input:focus, textarea:focus {
+      border: 1.5px solid var(--primary);
+      outline: none;
+    }
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+    #formMessage {
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+    .contact-info {
+      text-align: center;
+      color: var(--accent);
+    }
+    /* Footer */
+    footer {
+      background: var(--accent);
+      color: var(--white);
+      padding: 1.2rem 2rem 0.5rem 2rem;
+      flex-shrink: 0;
+      margin-top: auto;
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      max-width: 1100px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-section {
+      min-width: 180px;
+      margin-bottom: 1rem;
+      flex: 1 1 220px;
+    }
+    .footer-section h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      color: #ffe5d0;
+    }
+    .footer-section a {
+      color: #ffe5d0;
+      text-decoration: none;
+      margin-right: 0.7rem;
+      font-size: 1.2rem;
+      transition: color 0.2s;
+    }
+    .footer-section a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+    .footer-bottom {
+      text-align: center;
+      color: #ffe5d0;
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+    .social-icons {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      font-size: 1.5rem;
+      color: #ffe5d0;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .social-icons a:hover {
+      color: #fff;
+    }
+    .map-container {
+      width: 100%;
+      max-width: 320px;
+      margin-top: 0.5rem;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    @media (max-width: 900px) {
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .footer-section {
+        min-width: 0;
+        width: 100%;
+      }
+    }
+    @media (max-width: 700px) {
+      .map-container {
+        max-width: 100%;
+      }
+      .footer-section {
+        margin-bottom: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<!-- Sticky Header -->
-<header class="sticky-header">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="index.html">Geometra Ligi Simone</a>
-            
-            <!-- Pulsante per il menu mobile, visibile solo su dispositivi mobili -->
-            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Menu per desktop e mobile -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="chi-siamo.html">Chi Siamo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="servizi.html">Servizi</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contatti.html">Contatti</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-</header>
-
-    <!-- Hero Section con Video -->
-    <section class="hero">
-        <video autoplay muted loop>
-            <source src="sfondo.mp4" type="video/mp4">
-        </video>
-        <div class="hero-content">
-            <h1 class="animate__animated animate__fadeIn">Benvenuti nello Studio Geometra Ligi Simone</h1>
-            <p class="animate__animated animate__fadeIn">Esperienza e Professionalità al Tuo Servizio</p>
-        </div>
-    </section>
-
-<!-- Footer -->
-<div class="map-container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2915.072267251307!2d12.902877615725665!3d43.9174799791279!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132c6bc06462de95%3A0x11f0d0862b8f48d1!2sVia%20del%20Progresso%2034%2C%2061122%20Pesaro%20PU%2C%20Italia!5e0!3m2!1sit!2sit!4v1607558999354!5m2!1sit!2sit" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  <header>
+    <nav class="navbar">
+     <div class="logo" style="display: flex; align-items: center; gap: 0.7rem;">
+  <img src="data:image/png;base64,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" alt="Logo" style="height: 38px; width: 38px; filter: drop-shadow(0 0 6px #b85c38) drop-shadow(0 0 2px #fff); background: #fff; border-radius: 8px; padding: 2px;">
+  <span style="font-weight: bold; font-size: 1.5rem; color: var(--primary);">Geometra Ligi Simone</span>
 </div>
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <!-- Colonna 1: Collegamenti rapidi -->
-            <div class="col-md-3">
-                <h5>Collegamenti</h5>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="chi-siamo.html">Chi Siamo</a></li>
-                    <li><a href="servizi.html">Servizi</a></li>
-                    <li><a href="contatti.html">Contatti</a></li>
-                    
-                </ul>
-            </div>
-            
-            <!-- Colonna 2: Contatti -->
-            <div class="col-md-3">
-                <h5>Contatti</h5>
-                <p><a href="https://www.google.com/maps?q=Via+del+Progresso+34,+61122+Pesaro+PU,+Italia" target="_blank" class="address-link">Via del Progresso 34, 61122 Pesaro PU, Italia</a></p>
-                <p>Email: <a href="mailto:info@studiolegi.com">info@simoneligi.it</a></p>
-                <p>Telefono: <a href="tel:0721202316" class="tel-link">0721 202316</a></p> <!-- Aggiungi il link tel: -->
-            <p>Cellulare: <a href="tel:+393355418693" class="tel-link">+39 335 541 8693</a></p> <!-- Aggiungi il link tel: -->
-            </div>
-
-            <!-- Colonna 3: Seguici sui Social -->
-            <div class="col-md-3">
-                <h5>Seguici</h5>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/simone.ligi.142" target="_blank" class="social-icon">
-                        <i class="fab fa-facebook-f"></i> Facebook
-                    </a>
-                    <br>
-                    <a href="https://wa.me/393669510843" target="_blank" class="social-icon">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
-                </div>
-            </div>
-
-            <!-- Colonna 4: Altri Link -->
-            <div class="col-md-3">
-                <h5>Altri Link</h5>
-                <ul class="footer-links">
-                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="termini-e-condizioni.html">Termini e Condizioni</a></li>
-                    <li><a href="cookie-policy.html">Cookie Policy</a></li>
-                </ul>
-            </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" class="active" onclick="navigateTo('home', event)">Home</a></li>
+        <li><a href="#" onclick="navigateTo('services', event)">Servizi</a></li>
+        <li><a href="#" onclick="navigateTo('about', event)">Profilo</a></li>
+        <li><a href="#" onclick="navigateTo('contact', event)">Contatti</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+    </nav>
+  </header>
+  <main>
+    <div class="page active" id="home">
+      <section class="hero section-animate">
+        <div class="hero-text slide-in-left">
+          <h1>Geometra Ligi Simone</h1>
+          <p>Esperienza, tecnologia e assistenza completa per ogni esigenza catastale, edilizia e topografica.</p>
+          <a href="#" class="cta-btn" onclick="navigateTo('contact', event)">Richiedi una consulenza</a>
         </div>
-        P.I. 01158760411 - Iscritto all'Albo dei Geometri della Provincia di Pesaro-Urbino al n. 1258
-        <!-- Copyright -->
-        <div class="footer-bottom">
-            <p>&copy; 2025 Studio Geometra Ligi Simone. Tutti i diritti riservati.</p>
+        <div class="hero-images slide-in-right">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Strumenti" />
+          <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Planimetrie" />
+          <img src="https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=400&q=80" alt="Cantiere" />
         </div>
+      </section>
+      <section class="projects section-animate">
+        <h2 class="slide-in-right">Progetti realizzati</h2>
+        <div class="projects-list">
+          <div class="project-card">
+            <img src="https://images.unsplash.com/photo-1503389152951-9c3d0c6b7a5a?auto=format&fit=crop&w=600&q=80" alt="Rilievo topografico" />
+            <div>
+              <h3>Rilievo topografico per nuova lottizzazione</h3>
+              <p>Esecuzione di rilievi GPS e laser scanner per la progettazione di una nuova area residenziale a Pesaro.</p>
+            </div>
+          </div>
+          <div class="project-card">
+            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Pratica edilizia" />
+            <div>
+              <h3>Pratica edilizia per ristrutturazione</h3>
+              <p>Gestione completa delle pratiche edilizie e direzione lavori per la ristrutturazione di un edificio storico.</p>
+            </div>
+          </div>
+          <div class="project-card">
+            <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80" alt="Successione e divisione" />
+            <div>
+              <h3>Successione e divisione ereditaria</h3>
+              <p>Consulenza tecnica e pratiche catastali per la suddivisione di beni immobili tra eredi.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-</footer>
-    
+    <div class="page" id="services">
+      <section class="services section-animate">
+        <h2 class="slide-in-left">I miei servizi</h2>
+        <div class="service-list" id="serviceList">
+          <!-- Le card verranno popolate da JS -->
+        </div>
+      </section>
+    </div>
+    <div class="page" id="about">
+      <section class="about section-animate">
+        <h2 class="slide-in-left">Profilo professionale</h2>
+        <div class="about-content">
+          <img class="slide-in-left" src="https://scontent.fnap7-2.fna.fbcdn.net/v/t39.30808-6/548628742_24723935677224499_3401297397102118355_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=VTa-AXUUWzYQ7kNvwEE-yMp&_nc_oc=AdncyE-Qy7K6vdP0HUL6F8PgSkaZ2gNOKj9sawuSNSpKPX1UkESfrhd8sY5aEhOJs9Q&_nc_zt=23&_nc_ht=scontent.fnap7-2.fna&_nc_gid=ZdR9-Pd4zVzQYXdPTCVnKA&oh=00_Afj3mV8-VSFVPOrHkB-5XTsWJNV5BKJglhDFj7SUDfOpsg&oe=69265F48" alt="Geometra Ligi Simone" />
+          <div class="slide-in-right">
+            <h3>Ligi Simone</h3>
+            <p>Geometra abilitato, iscritto all’albo, specializzato in pratiche catastali, edilizie e rilievi topografici. Attento alle esigenze del cliente e costantemente aggiornato sulle normative.</p>
+            <ul>
+              <li>Laurea in Tecniche per l’Edilizia</li>
+              <li>Certificazioni in rilievi GPS e laser scanner</li>
+              <li>Esperienza in pratiche urbanistiche e successioni</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="page" id="contact">
+      <section class="contact section-animate">
+        <h2 class="slide-in-left">Contattami</h2>
+        <form id="contactForm" class="slide-in-right" novalidate>
+          <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefono</label>
+            <input type="tel" id="phone" name="phone" />
+          </div>
+          <div class="form-group">
+            <label for="subject">Oggetto</label>
+            <input type="text" id="subject" name="subject" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Messaggio</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="cta-btn">Invia richiesta</button>
+          <div id="formMessage"></div>
+        </form>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Contatti</h4>
+        <p>Email: <a href="mailto:info@simoneligi.it">info@simoneligi.it</a></p>
+        <p>Tel: <a href="tel:0721202316">0721 202316</a></p>
+        <p>Cell: <a href="tel:+393355418693">+39 335 541 8693</a></p>
+      </div>
+      <div class="footer-section">
+        <h4>Orari</h4>
+        <p><strong>Lunedì:</strong> 9:00 - 19:00</p>
+        <p><strong>Martedì:</strong> 9:00 - 19:00</p>
+        <p><strong>Mercoledì:</strong> 9:00 - 19:00</p>
+        <p><strong>Giovedì:</strong> 9:00 - 19:00</p>
+        <p><strong>Venerdì:</strong> 9:00 - 19:00</p>
+        <p><strong>Sabato:</strong> Chiuso</p>
+        <p><strong>Domenica:</strong> Chiuso</p>
+      </div>
+      <div class="footer-section">
+        <h4>Social</h4>
+        <div class="social-icons">
+          <a href="https://wa.me/393355418693" target="_blank" title="WhatsApp" rel="noopener" aria-label="WhatsApp">
+            <!-- WhatsApp SVG -->
+            <svg width="1.5em" height="1.5em" viewBox="0 0 32 32" fill="currentColor"><path d="M16.001 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.6 4.47 1.74 6.41l-1.84 6.73a1.07 1.07 0 0 0 1.31 1.31l6.73-1.84a12.77 12.77 0 0 0 6.41 1.74c7.06 0 12.8-5.74 12.8-12.8s-5.74-12.8-12.8-12.8zm0 23.04c-2.01 0-3.99-.53-5.72-1.53l-.41-.24-4.01 1.1 1.1-4.01-.24-.41a10.7 10.7 0 1 1 9.28 5.09zm6.01-7.23c-.33-.17-1.97-.97-2.27-1.08-.3-.11-.52-.17-.74.17-.22.33-.85 1.08-1.04 1.3-.19.22-.38.25-.71.08-.33-.17-1.39-.51-2.65-1.62-.98-.87-1.64-1.94-1.83-2.27-.19-.33-.02-.51.15-.68.15-.15.33-.38.5-.57.17-.19.22-.33.33-.55.11-.22.06-.41-.03-.58-.09-.17-.74-1.78-1.01-2.44-.27-.65-.54-.56-.74-.57-.19-.01-.41-.01-.63-.01-.22 0-.58.08-.88.41-.3.33-1.15 1.12-1.15 2.73 0 1.61 1.18 3.17 1.35 3.39.17.22 2.32 3.54 5.63 4.83.79.34 1.41.54 1.89.69.79.25 1.51.22 2.08.13.64-.1 1.97-.8 2.25-1.57.28-.77.28-1.43.2-1.57-.08-.14-.3-.22-.63-.39z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/simone.ligi.142" target="_blank" title="Facebook" rel="noopener" aria-label="Facebook">
+            <!-- Facebook SVG -->
+            <svg width="1.5em" height="1.5em" viewBox="0 0 32 32" fill="currentColor"><path d="M29 0h-26c-1.654 0-3 1.346-3 3v26c0 1.654 1.346 3 3 3h13v-12h-4v-5h4v-3.5c0-4.136 2.522-6.5 6.377-6.5 1.849 0 3.623.138 4.123.2v4.8h-2.25c-1.762 0-2.25.838-2.25 2.062v2.438h4.5l-1 5h-3.5v12h7c1.654 0 3-1.346 3-3v-26c0-1.654-1.346-3-3-3z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Dove trovarci</h4>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps?q=Via+del+Progresso+34,+61122+Pesaro+PU,+Italia&output=embed"
+            width="100%"
+            height="180"
+            style="border:0; border-radius:10px;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mappa Geometra Ligi Simone"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Geometra Ligi Simone. Tutti i diritti riservati.
+    </div>
+  </footer>
+  <script>
+    // SPA Navigation
+    function navigateTo(pageId, event) {
+      if(event) event.preventDefault();
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        if(a.getAttribute('onclick') && a.getAttribute('onclick').includes(pageId)) {
+          a.classList.add('active');
+        }
+      });
+      document.getElementById('navLinks').classList.remove('open');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    document.getElementById("hamburger").addEventListener("click", function() {
+      document.getElementById("navLinks").classList.toggle("open");
+    });
+
+    // Servizi dinamici
+const services = [
+  {
+    icon: "📐",
+    name: "Pratiche Catastali",
+    desc: "Volture, visure, planimetrie, accatastamenti e variazioni.",
+    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=100&q=80"
+  },
+  {
+    icon: "🏗️",
+    name: "Pratiche Edilizie",
+    desc: "CILA, SCIA, permessi di costruire, sanatorie e condoni.",
+    img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=100&q=80"
+  },
+  {
+    icon: "🗺️",
+    name: "Rilievi Topografici",
+    desc: "Rilievi GPS, laser scanner, tracciamenti e frazionamenti.",
+    img: "https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=100&q=80"
+  },
+  {
+    icon: "📊",
+    name: "Consulenza Tecnica",
+    desc: "Assistenza per successioni, divisioni, perizie e stime.",
+    img: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=100&q=80"
+  },
+  {
+    icon: "📝",
+    name: "Visure e Planimetrie",
+    desc: "Recupero documenti catastali e planimetrie aggiornate.",
+    img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=100&q=80"
+  },
+  {
+    icon: "🏠",
+    name: "Successioni",
+    desc: "Gestione completa delle pratiche di successione.",
+    img: "https://images.unsplash.com/photo-1503389152951-9c3d0c6b7a5a?auto=format&fit=crop&w=100&q=80"
+  }
+];
+
+function renderServices() {
+  const list = document.getElementById("serviceList");
+  list.innerHTML = "";
+  services.forEach((s, i) => {
+    const card = document.createElement("div");
+    card.className = "service-card";
+    card.innerHTML = `
+      <img class="service-img" src="${s.img}" alt="${s.name}">
+      <div class="icon">${s.icon}</div>
+      <h3>${s.name}</h3>
+      <p>${s.desc}</p>
+      <a href="#" class="service-btn" onclick="navigateTo('contact', event)">Scopri di più</a>
+    `;
+    list.appendChild(card);
+  });
+  // Animazione entrata
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.service-card').forEach(card => observer.observe(card));
+}
+renderServices();
+    // Animazioni di entrata delle sezioni
+    function animateSections() {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.section-animate, .slide-in-left, .slide-in-right').forEach(section => {
+        observer.observe(section);
+      });
+    }
+    window.addEventListener('DOMContentLoaded', animateSections);
+
+    // Form validation
+    const form = document.getElementById("contactForm");
+    const formMessage = document.getElementById("formMessage");
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      formMessage.textContent = "";
+      let valid = true;
+      ["name", "email", "subject", "message"].forEach(id => {
+        const field = form[id];
+        if (!field.value.trim()) {
+          field.style.borderColor = "#b85c38";
+          valid = false;
+        } else {
+          field.style.borderColor = "#ddd";
+        }
+      });
+      if (!valid) {
+        formMessage.textContent = "Compila tutti i campi obbligatori.";
+        formMessage.style.color = "#b85c38";
+        return;
+      }
+      formMessage.textContent = "Messaggio inviato! Ti ricontatterò al più presto.";
+      formMessage.style.color = "#2e7d32";
+      form.reset();
+    });
+  </script>
 </body>
 </html>
-
