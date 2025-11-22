@@ -1,9 +1,12 @@
+
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it"> 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Geometra Ligi Simone - SPA</title>
+  <!-- Google Fonts: Montserrat & Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #b85c38;
@@ -13,19 +16,18 @@
       --white: #fff;
       --radius: 10px;
       --shadow: 0 2px 8px rgba(0,0,0,0.07);
+      --gradient: linear-gradient(90deg, #b85c38 0%, #fbeee0 100%);
+      --gradient-btn: linear-gradient(90deg, #b85c38 0%, #6f4e37 100%);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      height: 100%;
-    }
+    html, body { height: 100%; }
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: 'Poppins', Arial, sans-serif;
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      /* Sfondo dinamico: pattern planimetria + gradiente animato */
       background:
         url('https://www.transparenttextures.com/patterns/blueprint.png'),
         linear-gradient(120deg, #fbeee0 0%, #b85c38 100%);
@@ -38,49 +40,77 @@
       100% { background-position: 0 0, 100% 50%; }
     }
     header {
-      background: var(--white);
-      box-shadow: var(--shadow);
+      background: #1E254E;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
       position: sticky;
       top: 0;
       z-index: 100;
     }
-    .logo img {
-  vertical-align: middle;
-  margin-left: 0.3rem;
-  border-radius: 6px;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-}
     .navbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       max-width: 1100px;
       margin: 0 auto;
-      padding: 1rem 2rem;
-      position: relative;
+      padding: 1.5rem 2rem;
+      min-height: 96px;
     }
-    .logo {
+    .logo-header {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .logo-header img {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 4px 16px #b85c38;
+      border: 3px solid #fff;
+      object-fit: cover;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.1;
+    }
+    .logo-title {
+      font-family: 'Montserrat', Arial, sans-serif;
       font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--primary);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .logo-subtitle {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #FFF9B1;
+      letter-spacing: 1px;
+      margin-top: 2px;
+      text-transform: uppercase;
     }
     .nav-links {
       display: flex;
       gap: 2rem;
       list-style: none;
-      transition: all 0.3s;
     }
     .nav-links li a {
-      color: var(--text);
+      color: #fff;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
       transition: color 0.2s;
       cursor: pointer;
+      position: relative;
     }
     .nav-links li a.active,
     .nav-links li a:hover {
-      color: var(--primary);
+      color: #FFF9B1;
     }
     .hamburger {
       display: none;
@@ -88,48 +118,278 @@
       cursor: pointer;
       background: none;
       border: none;
-      color: var(--primary);
+      color: #FFF9B1;
     }
     @media (max-width: 700px) {
-      .navbar {
-        padding: 1rem;
-      }
+      .navbar { padding: 1rem; }
       .nav-links {
         display: none;
         flex-direction: column;
-        background: var(--white);
+        background: #1E254E;
         position: absolute;
-        top: 60px;
+        top: 80px;
         right: 0;
         width: 180px;
-        box-shadow: var(--shadow);
-        border-radius: var(--radius);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        border-radius: 10px;
         z-index: 200;
         padding: 1rem 0;
       }
-      .nav-links.open {
-        display: flex;
+      .nav-links.open { display: flex; }
+      .hamburger { display: block; }
+    }
+    .hero-dynamic {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 340px;
+      padding: 3.5rem 2rem 2rem 2rem;
+      background: linear-gradient(120deg, #fbeee0 60%, #fff 100%);
+      overflow: hidden;
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 8px 32px rgba(184,92,56,0.08);
+      margin-bottom: 2rem;
+      animation: fadeInDown 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-60px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .hero-bg-anim {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: radial-gradient(circle at 30% 40%, #fbeee0 60%, #b85c38 100%);
+      opacity: 0.18;
+      animation: heroBgMove 8s ease-in-out infinite alternate;
+    }
+    @keyframes heroBgMove {
+      0% { background-position: 30% 40%; }
+      100% { background-position: 70% 60%; }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      flex: 1 1 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+      animation: fadeInLeft 1.1s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-60px);}
+      to { opacity: 1; transform: translateX(0);}
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      background: var(--gradient-btn);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.2rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      padding: 0.8rem 2.1rem;
+      border: none;
+      border-radius: 24px;
+      box-shadow: 0 4px 16px rgba(184,92,56,0.10);
+      cursor: default;
+      text-decoration: none;
+      margin-bottom: 1.2rem;
+      margin-top: 0;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 1px;
+      animation: fadeInUp 1.3s cubic-bezier(.4,0,.2,1);
+    }
+    .hero-badge::after {
+      content: "";
+      position: absolute;
+      left: -50%;
+      top: 0;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .hero-content h1 {
+      font-size: 2.7rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 0.2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #b85c38 0%, #6f4e37 60%, #a59fe6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-content h1::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      margin-top: 10px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #b85c38 0%, #a59fe6 100%);
+    }
+    .hero-desc {
+      font-size: 1.2rem;
+      color: #6f4e37;
+      max-width: 420px;
+      margin-bottom: 0.5rem;
+      font-family: 'Poppins', Arial, sans-serif;
+      animation: fadeInUp 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    .why-choose-me .hero-desc {
+      text-align: center;
+      width: 100%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .cta-btn-hero {
+      display: inline-flex;
+      align-items: center;
+      background: var(--gradient-btn);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      padding: 0.8rem 2.1rem;
+      border: none;
+      border-radius: 24px;
+      box-shadow: 0 4px 16px rgba(184,92,56,0.10);
+      cursor: pointer;
+      text-decoration: none;
+      margin-top: 0.5rem;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      animation: fadeInUp 1.3s cubic-bezier(.4,0,.2,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-btn-hero::after {
+      content: "";
+      position: absolute;
+      left: -50%;
+      top: 0;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .cta-btn-hero:hover {
+      background: linear-gradient(90deg, #6f4e37 0%, #b85c38 100%);
+      transform: scale(1.08) translateY(-2px);
+      box-shadow: 0 8px 32px rgba(184,92,56,0.18);
+    }
+    .cta-btn-hero:hover::after {
+      opacity: 1;
+      animation: shine 0.7s linear;
+    }
+    @keyframes shine {
+      0% { left: -50%; opacity: 0.2;}
+      50% { left: 50%; opacity: 0.5;}
+      100% { left: 120%; opacity: 0;}
+    }
+    .hero-img-wrap {
+      position: relative;
+      z-index: 1;
+      flex: 1 1 320px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      gap: 1.2rem;
+      min-width: 220px;
+      animation: fadeInRight 1.1s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(60px);}
+      to { opacity: 1; transform: translateX(0);}
+    }
+    .hero-img {
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(184,92,56,0.13);
+      object-fit: cover;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .hero-img.main { width: 150px; height: 150px; z-index: 2; transform: rotate(-6deg);}
+    .hero-img.side { width: 90px; height: 90px; z-index: 1; margin-left: -40px; opacity: 0.85; transform: rotate(8deg);}
+    .hero-img-wrap .hero-img:hover {
+      transform: scale(1.08) rotate(0deg);
+      box-shadow: 0 8px 32px rgba(184,92,56,0.18);
+    }
+    @media (max-width: 900px) {
+      .hero-img-wrap { justify-content: flex-start; margin-top: 1.2rem;}
+    }
+    @media (max-width: 700px) {
+      .hero-dynamic {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.7rem 0.5rem 0.7rem 0.5rem;
+        min-height: unset;
+        border-radius: 0 0 18px 18px;
+        margin-bottom: 1rem;
       }
-      .hamburger {
-        display: block;
+      .hero-content {
+        align-items: center;
+        text-align: center;
+        gap: 0.4rem;
       }
+      .hero-badge,
+      .cta-btn-hero {
+        font-size: 1rem;
+        padding: 0.5rem 1.2rem;
+        margin-bottom: 0.7rem;
+      }
+        .hero-desc {
+        font-size: 1rem;
+        max-width: 90vw;
+        margin-bottom: 0.3rem;
+      }
+      .hero-img-wrap {
+        justify-content: center;
+        margin-top: 0.7rem;
+        gap: 0.4rem;
+      }
+      .hero-img.main { width: 70px; height: 70px;}
+      .hero-img.side { width: 38px; height: 38px;}
+    }
+    @media (max-width: 400px) {
+      .hero-content h1 { font-size: 1.1rem; }
+      .hero-img.main { width: 90px; height: 90px;}
+      .hero-img.side { width: 50px; height: 50px;}
+      .hero-badge, .cta-btn-hero { font-size: 0.95rem; padding: 0.4rem 0.8rem; }
     }
     main {
       flex: 1 0 auto;
       min-height: 70vh;
+      background: var(--secondary);
+      padding-bottom: 0;
     }
     .page {
       display: none;
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+      background: var(--secondary);
     }
     .page.active {
       display: block;
       opacity: 1;
       transform: translateY(0);
     }
-    /* Animazioni generali */
     .section-animate {
       opacity: 0;
       transform: translateY(60px) scale(0.98);
@@ -158,270 +418,26 @@
       opacity: 1;
       transform: translateX(0);
     }
-    .service-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-height: 260px;
-  opacity: 0;
-  transform: translateY(40px) scale(0.97);
-  transition: opacity 0.7s, transform 0.7s, box-shadow 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-.service-card.in-view {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-.service-card:hover {
-  box-shadow: 0 12px 32px rgba(184,92,56,0.18);
-  transform: translateY(-8px) scale(1.03);
-}
-.service-img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-  transition: transform 0.3s;
-}
-.service-card:hover .service-img {
-  transform: scale(1.12) rotate(-6deg);
-}
-.service-card .icon {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  color: var(--primary);
-  transition: transform 0.3s;
-}
-.service-card:hover .icon {
-  transform: rotate(10deg) scale(1.1);
-}
-.service-card h3 {
-  margin-bottom: 0.5rem;
-  color: var(--accent);
-}
-.service-card p {
-  font-size: 1rem;
-  color: var(--text);
-  margin-bottom: 1rem;
-}
-.service-btn {
-  background: var(--primary);
-  color: var(--white);
-  border: none;
-  border-radius: 6px;
-  padding: 0.5rem 1.2rem;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
-  margin-top: auto;
-  align-self: flex-end;
-}
-.service-btn:hover {
-  background: var(--accent);
-  transform: scale(1.07);
-}
-    /* Effetti hover sulle card */
-    .service-card, .project-card, .about-content img {
-      transition: box-shadow 0.3s, transform 0.3s;
-    }
-    .service-card:hover, .project-card:hover {
-      box-shadow: 0 8px 32px rgba(184,92,56,0.18);
-      transform: translateY(-12px) scale(1.03);
-    }
-    .service-card .icon, .project-card img {
-      transition: transform 0.3s;
-    }
-    .service-card:hover .icon {
-      transform: rotate(10deg) scale(1.1);
-    }
-    .project-card:hover img {
-      transform: scale(1.08);
-    }
-    .about-content img:hover {
-      transform: scale(1.07);
-      box-shadow: 0 8px 32px rgba(184,92,56,0.18);
-    }
-    .cta-btn {
-      background: var(--primary);
-      color: var(--white);
-      padding: 0.8rem 2rem;
-      border: none;
-      border-radius: var(--radius);
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .cta-btn:hover {
-      transform: scale(1.07);
-      box-shadow: 0 4px 16px rgba(184,92,56,0.12);
-      background: var(--accent);
-    }
-    /* Hero */
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      padding: 3rem 2rem 2rem 2rem;
-      background: var(--white);
-      min-height: 400px;
-      gap: 2rem;
-    }
-    .hero-text {
-      flex: 1 1 320px;
-    }
-    .hero-images {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      flex: 1 1 320px;
-    }
-    .hero-images img {
-      width: 100%;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      object-fit: cover;
-      height: 120px;
-      transition: transform 0.3s;
-    }
-    @media (max-width: 900px) {
-      .hero, .about-content {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .hero-images {
-        grid-template-columns: 1fr;
-      }
-    }
-    @media (max-width: 700px) {
-      .hero {
-        padding: 2rem 1rem 1rem 1rem;
-      }
-    }
-    /* Servizi */
-    .services {
-      padding: 3rem 2rem;
-      background: var(--secondary);
-    }
-    .services h2 {
+    .section-title {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2.3rem;
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: 2px;
+      margin-bottom: 1.2rem;
       text-align: center;
-      color: var(--primary);
-      margin-bottom: 2rem;
+      text-shadow: 0 4px 16px #fbeee0, 0 1px 0 #fff;
+      background: none;
+      text-transform: uppercase;
     }
-    .service-list {
-      display: grid;
-      grid-template-columns:repeat(2, 1fr);
-      gap: 1.2rem;
-      margin-top: 2rem;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+    .why-choose-me {
+      background: var(--secondary);
+      padding-bottom: 0;
+      margin-bottom: 0;
     }
-    @media (max-width: 900px) {
-      .service-list {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (max-width: 600px) {
-      .service-list {
-        grid-template-columns: 1fr;
-      }
-    }
-    .service-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding:1rem 1rem 0.7rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      min-height: 140px;
-      max-width:260px;
-      margin:0 auto;
-      opacity: 0;
-      transform: translateY(40px)scale(0.97);
-      transition: opacity 0.7s, transform 0.7s, box-shadow 0.3s;
-      position: relative;
-      overflow: hidden;
-      animation: fadeInUp 0.7s forwards;
-    }
-    .service-card.in-view {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-    .service-card:hover {
-      box-shadow: 0 8px 32px rgba(184,92,56,0.18);
-      transform: translateY(-8px) scale(1.03);
-    }
-    .service-img {
-      width: 40px;
-      height: 40px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 0.5rem;
-      transition: transform 0.3s;
-    }
-    .service-card:hover .service-img {
-      transform: scale(1.12) rotate(-6deg);
-    }
-    .service-card .icon {
-      font-size: 1.3rem;
-      margin-bottom: 0.3rem;
-      color: var(--primary);
-      transition: transform 0.3s;
-    }
-    .service-card:hover .icon {
-      transform: rotate(10deg) scale(1.1);
-    }
-    .service-card h3 {
-      margin-bottom: 0.3rem;
-      color: var(--accent);
-      font-size: 1.05rem;
-    }
-    .service-card p {
-      font-size: 0.95rem;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-    .service-btn {
-      background: var(--primary);
-      color: var(--white);
-      border: none;
-      border-radius: 6px;
-      padding: 0.3rem 0.8rem;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-      margin-top: auto;
-      align-self: flex-end;
-    }
-    .service-btn:hover {
-      background: var(--accent);
-      transform: scale(1.07);
-    }
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    /* Progetti */
     .projects {
       padding: 3rem 2rem;
       background: var(--secondary);
-    }
-    .projects h2 {
-      text-align: center;
-      color: var(--primary);
-      margin-bottom: 2rem;
     }
     .projects-list {
       display: grid;
@@ -443,36 +459,122 @@
       width: 100%;
       height: 180px;
       object-fit: cover;
+      transition: transform 0.3s;
     }
     .project-card h3 {
       color: var(--accent);
       margin-bottom: 0.5rem;
       font-size: 1.15rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
     .project-card p {
       color: var(--text);
       font-size: 1rem;
     }
-    .project-card > div {
-      padding: 1.2rem;
-    }
+    .project-card > div { padding: 1.2rem; }
     @media (max-width: 700px) {
-      .projects-list {
-        grid-template-columns: 1fr;
-      }
-      .project-card img {
-        height: 140px;
-      }
+      .projects-list { grid-template-columns: 1fr; }
+      .project-card img { height: 140px; }
     }
-    /* Profilo */
-    .about {
+    .services {
       padding: 3rem 2rem;
       background: var(--secondary);
     }
-    .about h2 {
-      text-align: center;
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin: 2.5rem 0 2rem 0;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(184,92,56,0.10);
+      padding: 1.2rem 1rem 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 220px;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .service-card .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
       color: var(--primary);
-      margin-bottom: 2rem;
+      transition: transform 0.3s;
+    }
+    .service-card h3 {
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .service-card p {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .service-img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { box-shadow: 0 8px 32px rgba(184,92,56,0.18); transform: translateY(-8px) scale(1.03);}
+    .service-card:hover .icon { transform: rotate(10deg) scale(1.1);}
+    .service-card:hover .service-img { transform: scale(1.12) rotate(-6deg);}
+    .service-btn {
+      background: var(--gradient-btn);
+      color: var(--white);
+      border: none;
+      border-radius: 24px;
+      padding: 0.7rem 1.7rem;
+      font-size: 1.05rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      margin-top: auto;
+      align-self: flex-end;
+      box-shadow: 0 2px 8px rgba(184,92,56,0.10);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-btn::after {
+      content: "";
+      position: absolute;
+      left: -50%;
+      top: 0;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .service-btn:hover {
+      background: linear-gradient(90deg, #6f4e37 0%, #b85c38 100%);
+      transform: scale(1.08) translateY(-2px);
+      box-shadow: 0 8px 32px rgba(184,92,56,0.18);
+    }
+    .service-btn:hover::after {
+      opacity: 1;
+      animation: shine 0.7s linear;
+    }
+    .about {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      background: var(--secondary);
     }
     .about-content {
       display: flex;
@@ -489,25 +591,23 @@
       box-shadow: var(--shadow);
       transition: box-shadow 0.3s, transform 0.3s;
     }
-    .about-content div {
-      flex: 1;
-    }
+    .about-content div { flex: 1; }
     .about-content h3 {
       color: var(--accent);
       margin-bottom: 0.5rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
-    .about-content ul {
-      margin-top: 1rem;
-      padding-left: 1.2rem;
-    }
-    /* Contatti */
+    .about-content ul { margin-top: 1rem; padding-left: 1.2rem; }
     .contact {
       padding: 3rem 2rem;
-      background: var(--white);
+      background: var(--secondary);
     }
-    .contact h2 {
+    .contact .section-title {
       text-align: center;
-      color: var(--primary);
       margin-bottom: 2rem;
     }
     form {
@@ -518,13 +618,13 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
-    .form-group {
-      margin-bottom: 1.2rem;
-    }
+    .form-group { margin-bottom: 1.2rem; }
     label {
       display: block;
       margin-bottom: 0.3rem;
       color: var(--accent);
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 600;
     }
     input, textarea {
       width: 100%;
@@ -540,25 +640,16 @@
       border: 1.5px solid var(--primary);
       outline: none;
     }
-    textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
-    #formMessage {
-      margin-top: 1rem;
-      font-size: 1rem;
-    }
-    .contact-info {
-      text-align: center;
-      color: var(--accent);
-    }
-    /* Footer */
+    textarea { min-height: 90px; resize: vertical; }
+    #formMessage { margin-top: 1rem; font-size: 1rem; }
+    .contact-info { text-align: center; color: var(--accent); }
     footer {
       background: var(--accent);
       color: var(--white);
       padding: 1.2rem 2rem 0.5rem 2rem;
       flex-shrink: 0;
-      margin-top: auto;
+      margin-top: 0;
+      padding-top: 0;
     }
     .footer-content {
       display: flex;
@@ -578,6 +669,12 @@
       margin-bottom: 0.5rem;
       font-size: 1.1rem;
       color: #ffe5d0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: none;
+      text-shadow: none;
     }
     .footer-section a {
       color: #ffe5d0;
@@ -611,9 +708,7 @@
       transition: color 0.2s;
       text-decoration: none;
     }
-    .social-icons a:hover {
-      color: #fff;
-    }
+    .social-icons a:hover { color: #fff; }
     .map-container {
       width: 100%;
       max-width: 320px;
@@ -623,109 +718,134 @@
       box-shadow: var(--shadow);
     }
     @media (max-width: 900px) {
-      .footer-content {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .footer-section {
-        min-width: 0;
-        width: 100%;
-      }
+      .footer-content { flex-direction: column; align-items: flex-start; }
+      .footer-section { min-width: 0; width: 100%; }
     }
     @media (max-width: 700px) {
-      .map-container {
-        max-width: 100%;
-      }
-      .footer-section {
-        margin-bottom: 1.5rem;
-      }
+      .map-container { max-width: 100%; }
+      .footer-section { margin-bottom: 1.5rem; }
+    }
+    #backToTop {
+      position: fixed;
+      bottom: 32px;
+      right: 24px;
+      z-index: 999;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 2rem;
+      box-shadow: 0 4px 16px rgba(184,92,56,0.18);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      opacity: 0.85;
+    }
+    #backToTop:hover {
+      background: var(--accent);
+      transform: scale(1.08);
     }
   </style>
 </head>
 <body>
+  <body>
   <header>
-    <nav class="navbar">
-      <div class="logo" style="display: flex; align-items: center; gap: 0.7rem;">
-  <img src="data:image/png;base64,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" alt="Logo" style="height: 38px; width: 38px; filter: drop-shadow(0 0 6px #b85c38) drop-shadow(0 0 2px #fff); background: #fff; border-radius: 8px; padding: 2px;">
-  <span style="font-weight: bold; font-size: 1.5rem; color: var(--primary);">Geometra Ligi Simone</span>
-</div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#" class="active" onclick="navigateTo('home', event)">Home</a></li>
-        <li><a href="#" onclick="navigateTo('services', event)">Servizi</a></li>
-        <li><a href="#" onclick="navigateTo('about', event)">Profilo</a></li>
-        <li><a href="#" onclick="navigateTo('contact', event)">Contatti</a></li>
-      </ul>
-      <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
-    </nav>
-  </header>
-  <main>
-    <div class="page active" id="home">
-      <section class="hero section-animate">
-        <div class="hero-text slide-in-left">
-          <h1>Geometra Ligi Simone</h1>
-          <p>Esperienza, tecnologia e assistenza completa per ogni esigenza catastale, edilizia e topografica.</p>
-          <a href="#" class="cta-btn" onclick="navigateTo('contact', event)">Richiedi una consulenza</a>
-        </div>
-        <div class="hero-images slide-in-right">
-          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Strumenti" />
-          <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Planimetrie" />
-          <img src="https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=400&q=80" alt="Cantiere" />
-        </div>
-      </section>
-      <section class="projects section-animate">
-        <h2 class="slide-in-right">Progetti realizzati</h2>
-        <div class="projects-list">
-          <div class="project-card">
-            <img src="https://images.unsplash.com/photo-1503389152951-9c3d0c6b7a5a?auto=format&fit=crop&w=600&q=80" alt="Rilievo topografico" />
-            <div>
-              <h3>Rilievo topografico per nuova lottizzazione</h3>
-              <p>Esecuzione di rilievi GPS e laser scanner per la progettazione di una nuova area residenziale a Pesaro.</p>
-            </div>
-          </div>
-          <div class="project-card">
-            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Pratica edilizia" />
-            <div>
-              <h3>Pratica edilizia per ristrutturazione</h3>
-              <p>Gestione completa delle pratiche edilizie e direzione lavori per la ristrutturazione di un edificio storico.</p>
-            </div>
-          </div>
-          <div class="project-card">
-            <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80" alt="Successione e divisione" />
-            <div>
-              <h3>Successione e divisione ereditaria</h3>
-              <p>Consulenza tecnica e pratiche catastali per la suddivisione di beni immobili tra eredi.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+  <nav class="navbar">
+    <div class="logo-header">
+      <img src="data:image/png;base64,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" alt="Logo">
+      <div class="logo-text">
+        <span class="logo-title">Geometra</span>
+        <span class="logo-subtitle">Ligi Simone</span>
+      </div>
     </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" class="active" onclick="navigateTo('home', event)">Home</a></li>
+      <li><a href="#" onclick="navigateTo('services', event)">Servizi</a></li>
+      <li><a href="#" onclick="navigateTo('about', event)">Profilo</a></li>
+      <li><a href="#" onclick="navigateTo('contact', event)">Contatti</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+  </nav>
+</header>
+  <main>
+    <!-- HOME: hero dinamica + progetti -->
+    <div class="page active" id="home">
+      <section class="hero-dynamic">
+        <div class="hero-bg-anim"></div>
+        <div class="hero-content">
+          <div class="hero-badge cta-btn-hero slide-in-left" style="margin-bottom:1.2rem;display:inline-block;cursor:default;">Geometra Ligi Simone</div>
+          <p class="hero-desc">Esperienza, precisione e tecnologia per ogni esigenza catastale, edilizia e topografica. Scopri i nostri progetti e servizi!</p>
+          <a href="#" class="cta-btn-hero" onclick="navigateTo('services', event)">Scopri i servizi</a>
+        </div>
+        <div class="hero-img-wrap">
+          <img src="https://plus.unsplash.com/premium_photo-1663041626408-38295872c473?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Z2VvbWV0cmElMjBsYXZvcm98ZW58MHx8MHx8fDA%3D" alt="Strumenti" class="hero-img main" />
+          <img src="https://plus.unsplash.com/premium_photo-1661390005107-58d332ac4ce7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTd8fGdlb21ldHJhJTIwbGF2b3JvfGVufDB8fDB8fHww" alt="Planimetrie" class="hero-img side" />
+        </div>
+      </section>
+    <section class="why-choose-me section-animate" style="margin-bottom: 4rem;">
+  <h2 class="section-title slide-in-left">Perché scegliere me</h2>
+  <div style="max-width:700px;margin:0 auto; text-align:center;">
+  <p class="slide-in-right hero-desc" style="margin-bottom:2rem;">
+    Affidarsi a me significa scegliere un professionista che mette al centro la chiarezza, la trasparenza e la cura di ogni dettaglio.
+  </p>
+    <ul style="list-style:none;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;">
+  <li class="slide-in-left" style="flex:1 1 220px;min-width:220px;max-width:300px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(184,92,56,0.08);padding:1.2rem;text-align:center;">
+    <strong style="color:#b85c38;font-family:'Montserrat',Arial,sans-serif;font-size:1.1rem;">Esperienza</strong>
+    <p style="font-family:'Montserrat',Arial,sans-serif;">Oltre 35 anni di attività nel settore tecnico e catastale.</p>
+      </li>
+      <li class="slide-in-right" style="flex:1 1 220px;min-width:220px;max-width:300px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(184,92,56,0.08);padding:1.2rem;">
+        <strong style="color:#b85c38;font-family:'Montserrat',Arial,sans-serif;font-size:1.1rem;">Efficienza</strong>
+        <p style="font-family:'Montserrat',Arial,sans-serif;">
+          Precisione, puntualità e attenzione ad ogni dettaglio.
+        </p>
+      </li>
+      <li class="slide-in-left" style="flex:1 1 220px;min-width:220px;max-width:300px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(184,92,56,0.08);padding:1.2rem;">
+        <strong style="color:#b85c38;font-family:'Montserrat',Arial,sans-serif;font-size:1.1rem;">Efficacia</strong>
+        <p style="font-family:'Montserrat',Arial,sans-serif;">
+          Supporto costante e consulenza dedicata in ogni fase del lavoro.
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+    </div>
+    <!-- SERVIZI -->
     <div class="page" id="services">
       <section class="services section-animate">
-        <h2 class="slide-in-left">I miei servizi</h2>
+        <h2 class="section-title title-main slide-in-left">I miei servizi</h2>
         <div class="service-list" id="serviceList">
           <!-- Le card verranno popolate da JS -->
         </div>
       </section>
     </div>
+    <!-- PROFILO -->
     <div class="page" id="about">
       <section class="about section-animate">
-        <h2 class="slide-in-left">Profilo professionale</h2>
+        <h2 class="section-title title-main slide-in-left">Profilo</h2>
         <div class="about-content">
           <img class="slide-in-left" src="https://scontent.fnap7-2.fna.fbcdn.net/v/t39.30808-6/548628742_24723935677224499_3401297397102118355_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=VTa-AXUUWzYQ7kNvwEE-yMp&_nc_oc=AdncyE-Qy7K6vdP0HUL6F8PgSkaZ2gNOKj9sawuSNSpKPX1UkESfrhd8sY5aEhOJs9Q&_nc_zt=23&_nc_ht=scontent.fnap7-2.fna&_nc_gid=ZdR9-Pd4zVzQYXdPTCVnKA&oh=00_Afj3mV8-VSFVPOrHkB-5XTsWJNV5BKJglhDFj7SUDfOpsg&oe=69265F48" alt="Geometra Ligi Simone" />
           <div class="slide-in-right">
-            <h3>Ligi Simone</h3>
+            <h3 style="font-family:'Montserrat',Arial,sans-serif;font-size:1.5rem;font-weight:900;color:var(--accent);margin-bottom:0.5rem;letter-spacing:1px;text-transform:uppercase;">Ligi Simone</h3>
             <p>Geometra abilitato, iscritto all’albo, specializzato in pratiche catastali, edilizie e rilievi topografici. Attento alle esigenze del cliente e costantemente aggiornato sulle normative.</p>
             <ul>
+              <li>Oltre 35 anni di esperienza al servizio dei clienti, con professionalità e competenza.</li>
+              <li>Attenzione costante alle esigenze di ogni cliente.</li>
+              <li>Aggiornamento continuo sulle normative del settore.</li>
+              <li>Precisione e affidabilità in tutte le pratiche gestite.</li>
+              <li>Passione e dedizione per il proprio lavoro.</li>
+              <li>Supporto completo in ogni fase del progetto.</li>
               <li>Esperienza in pratiche urbanistiche e successioni</li>
             </ul>
           </div>
         </div>
       </section>
     </div>
+    <!-- CONTATTI -->
     <div class="page" id="contact">
       <section class="contact section-animate">
-        <h2 class="slide-in-left">Contattami</h2>
-        <form id="contactForm" class="slide-in-right" method="POST"action="mailto:info@simoneligi.it"enctype="text/plain">
+       <h2 class="section-title title-main slide-in-left" style text-align:center>Contatti</h2>
+        <form id="contactForm" class="slide-in-right" method="POST" action="mailto:info@simoneligi.it" enctype="text/plain">
           <div class="form-group">
             <label for="name">Nome</label>
             <input type="text" id="name" name="name" required />
@@ -746,7 +866,7 @@
             <label for="message">Messaggio</label>
             <textarea id="message" name="message" required></textarea>
           </div>
-          <button type="submit" class="cta-btn">Invia richiesta</button>
+          <button type="submit" class="service-btn" style="display:block;margin:0 auto;">Invia richiesta</button>
           <div id="formMessage"></div>
         </form>
       </section>
@@ -774,13 +894,17 @@
         <h4>Social</h4>
         <div class="social-icons">
           <a href="https://wa.me/393355418693" target="_blank" title="WhatsApp" rel="noopener" aria-label="WhatsApp">
-            <!-- WhatsApp SVG -->
             <svg width="1.5em" height="1.5em" viewBox="0 0 32 32" fill="currentColor"><path d="M16.001 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.6 4.47 1.74 6.41l-1.84 6.73a1.07 1.07 0 0 0 1.31 1.31l6.73-1.84a12.77 12.77 0 0 0 6.41 1.74c7.06 0 12.8-5.74 12.8-12.8s-5.74-12.8-12.8-12.8zm0 23.04c-2.01 0-3.99-.53-5.72-1.53l-.41-.24-4.01 1.1 1.1-4.01-.24-.41a10.7 10.7 0 1 1 9.28 5.09zm6.01-7.23c-.33-.17-1.97-.97-2.27-1.08-.3-.11-.52-.17-.74.17-.22.33-.85 1.08-1.04 1.3-.19.22-.38.25-.71.08-.33-.17-1.39-.51-2.65-1.62-.98-.87-1.64-1.94-1.83-2.27-.19-.33-.02-.51.15-.68.15-.15.33-.38.5-.57.17-.19.22-.33.33-.55.11-.22.06-.41-.03-.58-.09-.17-.74-1.78-1.01-2.44-.27-.65-.54-.56-.74-.57-.19-.01-.41-.01-.63-.01-.22 0-.58.08-.88.41-.3.33-1.15 1.12-1.15 2.73 0 1.61 1.18 3.17 1.35 3.39.17.22 2.32 3.54 5.63 4.83.79.34 1.41.54 1.89.69.79.25 1.51.22 2.08.13.64-.1 1.97-.8 2.25-1.57.28-.77.28-1.43.2-1.57-.08-.14-.3-.22-.63-.39z"/></svg>
           </a>
           <a href="https://www.facebook.com/simone.ligi.142" target="_blank" title="Facebook" rel="noopener" aria-label="Facebook">
-            <!-- Facebook SVG -->
             <svg width="1.5em" height="1.5em" viewBox="0 0 32 32" fill="currentColor"><path d="M29 0h-26c-1.654 0-3 1.346-3 3v26c0 1.654 1.346 3 3 3h13v-12h-4v-5h4v-3.5c0-4.136 2.522-6.5 6.377-6.5 1.849 0 3.623.138 4.123.2v4.8h-2.25c-1.762 0-2.25.838-2.25 2.062v2.438h4.5l-1 5h-3.5v12h7c1.654 0 3-1.346 3-3v-26c0-1.654-1.346-3-3-3z"/></svg>
           </a>
+          <a href="https://www.instagram.com/studiosimoneligi/" target="_blank" title="Instagram" rel="noopener" aria-label="Instagram">
+  <!-- Instagram SVG -->
+  <svg width="1.5em" height="1.5em" viewBox="0 0 32 32" fill="currentColor">
+    <path d="M16 7.3A8.7 8.7 0 1 0 24.7 16 8.7 8.7 0 0 0 16 7.3zm0 14.3A5.6 5.6 0 1 1 21.6 16 5.6 5.6 0 0 1 16 21.6zm8.9-14.5a2 2 0 1 1-2-2 2 2 0 0 1 2 2zm5.7 2.1a7.2 7.2 0 0 0-2-5.1A7.2 7.2 0 0 0 24.5 2a28.6 28.6 0 0 0-8.5-.6A28.6 28.6 0 0 0 7.5 2a7.2 7.2 0 0 0-5.1 2A7.2 7.2 0 0 0 2 7.5a28.6 28.6 0 0 0-.6 8.5A28.6 28.6 0 0 0 2 24.5a7.2 7.2 0 0 0 2 5.1 7.2 7.2 0 0 0 5.1 2 28.6 28.6 0 0 0 8.5.6 28.6 28.6 0 0 0 8.5-.6 7.2 7.2 0 0 0 5.1-2 7.2 7.2 0 0 0 2-5.1 28.6 28.6 0 0 0 .6-8.5A28.6 28.6 0 0 0 30.6 7.5zM28.1 24a4.1 4.1 0 0 1-2.3 2.3c-1.6.6-5.4.5-9.8.5s-8.2.1-9.8-.5a4.1 4.1 0 0 1-2.3-2.3c-.6-1.6-.5-5.4-.5-9.8s-.1-8.2.5-9.8A4.1 4.1 0 0 1 6.2 3.9c1.6-.6 5.4-.5 9.8-.5s8.2-.1 9.8.5a4.1 4.1 0 0 1 2.3 2.3c.6 1.6.5 5.4.5 9.8s.1 8.2-.5 9.8z"/>
+  </svg>
+</a>
         </div>
       </div>
       <div class="footer-section">
@@ -803,6 +927,10 @@
       &copy; 2025 Geometra Ligi Simone. Tutti i diritti riservati.
     </div>
   </footer>
+  <!-- Bottone torna su -->
+  <button id="backToTop" aria-label="Torna in cima" style="display:none;">
+    ↑
+  </button>
   <script>
     // SPA Navigation
     function navigateTo(pageId, event) {
@@ -823,71 +951,65 @@
     });
 
     // Servizi dinamici
-const services = [
-  {
-    icon: "📐",
-    name: "Pratiche Catastali",
-    desc: "Volture, visure, planimetrie, accatastamenti e variazioni.",
-    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=100&q=80"
-  },
-  {
-    icon: "🏗️",
-    name: "Pratiche Edilizie",
-    desc: "CILA, SCIA, permessi di costruire, sanatorie e condoni.",
-    img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=100&q=80"
-  },
-  {
-    icon: "🗺️",
-    name: "Rilievi Topografici",
-    desc: "Rilievi GPS, laser scanner, tracciamenti e frazionamenti.",
-    img: "https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=100&q=80"
-  },
-  {
-    icon: "📊",
-    name: "Consulenza Tecnica",
-    desc: "Assistenza per successioni, divisioni, perizie e stime.",
-    img: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=100&q=80"
-  },
-  {
-    icon: "📝",
-    name: "Visure e Planimetrie",
-    desc: "Recupero documenti catastali e planimetrie aggiornate.",
-    img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=100&q=80"
-  },
-  {
-    icon: "🏠",
-    name: "Successioni",
-    desc: "Gestione completa delle pratiche di successione.",
-    img: "https://images.unsplash.com/photo-1503389152951-9c3d0c6b7a5a?auto=format&fit=crop&w=100&q=80"
-  }
-];
-
-function renderServices() {
-  const list = document.getElementById("serviceList");
-  list.innerHTML = "";
-  services.forEach((s, i) => {
-    const card = document.createElement("div");
-    card.className = "service-card";
-    card.innerHTML = `
-      <img class="service-img" src="${s.img}" alt="${s.name}">
-      <div class="icon">${s.icon}</div>
-      <h3>${s.name}</h3>
-      <p>${s.desc}</p>
-      <a href="#" class="service-btn" onclick="navigateTo('contact', event)">Scopri di più</a>
-    `;
-    list.appendChild(card);
-  });
-  // Animazione entrata
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
+    const services = [
+      {
+        icon: "📐",
+        name: "Pratiche Catastali",
+        desc: "Volture, visure, planimetrie, accatastamenti e variazioni.",
+        img: "https://media.istockphoto.com/id/2181035069/it/foto/searching-new-home-concept-with-home-model-magnifying-glass-and-imaginary-cadastral-map.webp?a=1&b=1&s=612x612&w=0&k=20&c=K2YMw5Wy2EkwK21wJTSREuKV5q9tjf0FOrDUGOCiZ3Y="
+      },
+      {
+        icon: "🏗️",
+        name: "Pratiche Edilizie",
+        desc: "CILA, SCIA, permessi di costruire, sanatorie e condoni.",
+        img: "https://images.unsplash.com/photo-1562957982-b1f25317aebd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHByYXRpY2hlJTIwZWRpbGl6aWV8ZW58MHx8MHx8fDA%3D"
+      },
+      {
+        icon: "🗺️",
+        name: "Rilievi Topografici",
+        desc: "Rilievi GPS, laser scanner, tracciamenti e frazionamenti.",
+        img: "https://plus.unsplash.com/premium_photo-1681992175162-5d5a1b0f260a?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fHJpbGlldmklMjB0b3BvZ3JhZmljaXxlbnwwfHwwfHx8MA%3D%3D"
+      },
+      {
+        icon: "📊",
+        name: "Consulenza Tecnica",
+        desc: "Assistenza per successioni, divisioni, perizie e stime.",
+        img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y29uc3VsZW56YXxlbnwwfHwwfHx8MA%3D%3D"
+      },
+      {
+        icon: "📝",
+        name: "Visure e Planimetrie",
+        desc: "Recupero documenti catastali e planimetrie aggiornate.",
+        img: "https://images.unsplash.com/photo-1608303588026-884930af2559?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGxhbmltZXRyaWV8ZW58MHx8MHx8fDA%3D"
+      },
+      {
+        icon: "🏠",
+        name: "Successioni",
+        desc: "Gestione completa delle pratiche di successione.",
+        img: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1tb2JpbGl8ZW58MHx8MHx8fDA%3D"
       }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.service-card').forEach(card => observer.observe(card));
-}
-renderServices();
+    ];
+
+    function renderServices() {
+      const list = document.getElementById("serviceList");
+      if (!list) return;
+      list.innerHTML = "";
+      services.forEach((s, index) => {
+        const card = document.createElement("div");
+        card.className = "service-card section-animate " + (index % 2 === 0 ? "slide-in-left" : "slide-in-right");
+        card.innerHTML = `
+          <img class="service-img" src="${s.img}" alt="${s.name}">
+          <div class="icon">${s.icon}</div>
+          <h3 style="font-family:'Montserrat',Arial,sans-serif;font-size:1.15rem;font-weight:900;color:var(--accent);margin-bottom:0.5rem;letter-spacing:1px;text-transform:uppercase;">${s.name}</h3>
+          <p>${s.desc}</p>
+          <a href="#" class="service-btn" onclick="navigateTo('contact', event)">Scopri di più</a>
+        `;
+        list.appendChild(card);
+      });
+      animateSections();
+    }
+    renderServices();
+
     // Animazioni di entrata delle sezioni
     function animateSections() {
       const observer = new IntersectionObserver(entries => {
@@ -928,7 +1050,21 @@ renderServices();
       formMessage.style.color = "#2e7d32";
       form.reset();
     });
+
+    // Bottone torna su
+    document.addEventListener('DOMContentLoaded', function() {
+      var backToTop = document.getElementById('backToTop');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+          backToTop.style.display = 'block';
+        } else {
+          backToTop.style.display = 'none';
+        }
+      });
+      backToTop.addEventListener('click', function() {
+        window.scrollTo({top:0, behavior:'smooth'});
+      });
+    });
   </script>
 </body>
 </html>
-
