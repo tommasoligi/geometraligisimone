@@ -588,19 +588,29 @@
     <div class="page" id="contact">
       <section class="contact section-animate">
         <h2 class="section-title title-main slide-in-left" style="text-align:center;">Contatti</h2>
-        <form id="contactForm" class="slide-in-right" method="POST" action="mailto:info@simoneligi.it" enctype="text/plain">
-          <div class="form-group">
-            <label for="name">Nome e Cognome</label>
-            <input type="text" id="name" name="name" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required />
-          </div>
-          <div class="form-group">
-            <label for="phone">Telefono</label>
-            <input type="tel" id="phone" name="phone" />
-          </div>
+        <form action="https://formspree.io/f/mbledqbk" method="POST" class="slide-in-right">
+  <div class="form-group">
+    <label for="name">Nome e Cognome</label>
+    <input type="text" id="name" name="name" required />
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required />
+  </div>
+  <div class="form-group">
+    <label for="phone">Telefono</label>
+    <input type="tel" id="phone" name="phone" />
+  </div>
+  <div class="form-group">
+    <label for="subject">Oggetto</label>
+    <input type="text" id="subject" name="subject" required />
+  </div>
+  <div class="form-group">
+    <label for="message">Messaggio</label>
+    <textarea id="message" name="message" required></textarea>
+  </div>
+  <button type="submit" class="service-btn" style="display:block;margin:0 auto;">Invia richiesta</button>
+</form>
           <div class="form-group">
             <label for="subject">Oggetto</label>
             <input type="text" id="subject" name="subject" required />
@@ -732,30 +742,39 @@
     window.addEventListener('DOMContentLoaded', animateSections);
 
     // Form validation
-    const form = document.getElementById("contactForm");
-    const formMessage = document.getElementById("formMessage");
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      formMessage.textContent = "";
-      let valid = true;
-      ["name", "email", "subject", "message"].forEach(id => {
-        const field = form[id];
-        if (!field.value.trim()) {
-          field.style.borderColor = "#b85c38";
-          valid = false;
-        } else {
-          field.style.borderColor = "#ddd";
-        }
-      });
-      if (!valid) {
-        formMessage.textContent = "Compila tutti i campi obbligatori.";
-        formMessage.style.color = "#b85c38";
-        return;
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("contactForm");
+  const formMessage = document.getElementById("formMessage");
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    formMessage.textContent = "";
+    let data = new FormData(form);
+
+    fetch(form.action, {
+      method: "POST",
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        formMessage.textContent = "Messaggio inviato! Ti ricontatterò al più presto.";
+        formMessage.style.color = "#2e7d32";
+        form.reset();
+      } else {
+        response.json().then(data => {
+          if (Object.hasOwn(data, 'errors')) {
+            formMessage.textContent = data["errors"].map(error => error["message"]).join(", ");
+          } else {
+            formMessage.textContent = "Errore nell'invio. Riprova.";
+          }
+          formMessage.style.color = "#b85c38";
+        });
       }
-      formMessage.textContent = "Messaggio inviato! Ti ricontatterò al più presto.";
-      formMessage.style.color = "#2e7d32";
-      form.reset();
+    }).catch(error => {
+      formMessage.textContent = "Impossibile inviare, riprova più tardi.";
+      formMessage.style.color = "#b85c38";
     });
+  });
+});
 
     // Bottone torna su
     document.addEventListener('DOMContentLoaded', function() {
@@ -774,5 +793,6 @@
   </script>
 </body>
 </html>
+
 
 
