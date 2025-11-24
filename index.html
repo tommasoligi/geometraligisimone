@@ -588,7 +588,7 @@
     <div class="page" id="contact">
       <section class="contact section-animate">
         <h2 class="section-title title-main slide-in-left" style="text-align:center;">Contatti</h2>
-        <form action="https://formspree.io/f/mbledqbk" method="POST" class="slide-in-right">
+        <form id="contactForm" action="sendmail.php" method="POST" class="slide-in-right">
   <div class="form-group">
     <label for="name">Nome e Cognome</label>
     <input type="text" id="name" name="name" required />
@@ -731,6 +731,7 @@
     window.addEventListener('DOMContentLoaded', animateSections);
 
     // Form validation
+<script>
 document.addEventListener("DOMContentLoaded", function() {
   const form = document.getElementById("contactForm");
   const formMessage = document.getElementById("formMessage");
@@ -738,23 +739,17 @@ document.addEventListener("DOMContentLoaded", function() {
     e.preventDefault();
     formMessage.textContent = "";
     let data = new FormData(form);
-
     fetch(form.action, {
       method: "POST",
       body: data,
-      headers: { 'Accept': 'application/json' }
     }).then(response => {
       if (response.ok) {
         formMessage.textContent = "Messaggio inviato! Ti ricontatterò al più presto.";
         formMessage.style.color = "#2e7d32";
         form.reset();
       } else {
-        response.json().then(data => {
-          if (Object.hasOwn(data, 'errors')) {
-            formMessage.textContent = data["errors"].map(error => error["message"]).join(", ");
-          } else {
-            formMessage.textContent = "Errore nell'invio. Riprova.";
-          }
+        response.text().then(text => {
+          formMessage.textContent = text;
           formMessage.style.color = "#b85c38";
         });
       }
@@ -764,6 +759,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
+</script>
 
     // Bottone torna su
     document.addEventListener('DOMContentLoaded', function() {
@@ -782,6 +778,7 @@ document.addEventListener("DOMContentLoaded", function() {
   </script>
 </body>
 </html>
+
 
 
 
