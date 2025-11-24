@@ -1,36 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- URL della home page -->
+
+  <!-- Home -->
   <url>
-    <loc>https://www.geometraligisimone.it/</loc>
-    <lastmod>2024-11-11</lastmod>  <!-- Data di ultima modifica -->
-    <changefreq>daily</changefreq>  <!-- Frequenza di aggiornamento -->
-    <priority>1.0</priority>  <!-- Priorità della pagina -->
+    <loc>https://geometraligisimone.it/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
   </url>
 
-  <!-- URL della pagina "Chi siamo" -->
+  <!-- Chi Siamo -->
   <url>
-    <loc>https://www.geometraligisimone.it/chi-siamo</loc>
-    <lastmod>2024-11-10</lastmod>
+    <loc>https://geometraligisimone.it/chi-siamo</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Servizi -->
+  <url>
+    <loc>https://geometraligisimone.it/servizi</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- URL della pagina "Servizi" -->
   <url>
-    <loc>https://www.geometraligisimone.it/servizi</loc>
-    <lastmod>2024-11-09</lastmod>
+    <loc>https://geometraligisimone.it/servizi/progettazione-edilizia</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://geometraligisimone.it/servizi/urbanistica</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://geometraligisimone.it/servizi/topografia</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://geometraligisimone.it/servizi/consulenza-fiscale-catastale</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://geometraligisimone.it/servizi/stime-e-valutazioni</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Recensioni -->
+  <url>
+    <loc>https://geometraligisimone.it/recensioni</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- URL della pagina "Contatti" -->
+  <!-- Contatti -->
   <url>
-    <loc>https://www.geometraligisimone.it/contatti</loc>
-    <lastmod>2024-11-08</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://geometraligisimone.it/contatti</loc>
+    <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Aggiungi altre pagine se necessario -->
+  <!-- Legal -->
+  <url>
+    <loc>https://geometraligisimone.it/privacy-policy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://geometraligisimone.it/termini-condizioni</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://geometraligisimone.it/cookie-policy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
 </urlset>
