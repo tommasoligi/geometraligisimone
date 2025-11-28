@@ -663,74 +663,101 @@
 
   <script>
     // SPA Navigation
-    function navigateTo(pageId, event) {
-      if(event) event.preventDefault();
-      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-      document.getElementById(pageId).classList.add('active');
-      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-      document.querySelectorAll('.nav-links a').forEach(a => {
-        if(a.getAttribute('onclick') && a.getAttribute('onclick').includes(pageId)) {
-          a.classList.add('active');
-        }
-      });
-      document.getElementById('navLinks').classList.remove('open');
-      document.getElementById('hamburger').classList.remove('open');
-      window.scrollTo({top:0,behavior:'smooth'});
-      animateSections();  // Riattiva animazioni sezioni
-    }
+function navigateTo(pageId, event) {
+  if (event) event.preventDefault();
 
-    const hamburger = document.getElementById("hamburger");
-    hamburger.addEventListener("click", function() {
-      document.getElementById("navLinks").classList.toggle("open");
-      hamburger.classList.toggle("open");
+  document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    if (a.getAttribute('onclick') && a.getAttribute('onclick').includes(pageId)) {
+      a.classList.add('active');
+    }
+  });
+
+  document.getElementById('navLinks').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+
+  // Salva la pagina attiva
+  sessionStorage.setItem('currentPage', pageId);
+
+  // Aggiorna l’hash (opzionale)
+  if (pageId !== 'home') {
+    window.location.hash = pageId;
+  } else {
+    window.location.hash = '';
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  animateSections();
+}
+
+const hamburger = document.getElementById("hamburger");
+hamburger.addEventListener("click", function() {
+  document.getElementById("navLinks").classList.toggle("open");
+  hamburger.classList.toggle("open");
+});
+
+// Servizi dinamici
+const services = [
+  { icon: "📐", name: "Pratiche Catastali", desc: "Volture, visure, planimetrie, accatastamenti e variazioni.", img: "https://media.istockphoto.com/id/2181035069/it/foto/searching-new-home-concept-with-home-model-magnifying-glass-and-imaginary-cadastral-map.webp?a=1&b=1&s=612x612&w=0&k=20&c=K2YMw5Wy2EkwK21wJTSREuKV5q9tjf0FOrDUGOCiZ3Y=" },
+  { icon: "🏗️", name: "Pratiche Edilizie", desc: "CILA, SCIA, permessi di costruire, sanatorie e condoni.", img: "https://images.unsplash.com/photo-1562957982-b1f25317aebd?w=600&auto=format&fit=crop&q=60" },
+  { icon: "🗺️", name: "Rilievi Topografici", desc: "Rilievi GPS, laser scanner, tracciamenti e frazionamenti.", img: "https://plus.unsplash.com/premium_photo-1681992175162-5d5a1b0f260a?w=1000&auto=format&fit=crop&q=60" },
+  { icon: "📊", name: "Consulenza Tecnica", desc: "Assistenza per successioni, divisioni, perizie e stime.", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&auto=format&fit=crop&q=60" },
+  { icon: "📝", name: "Visure e Planimetrie", desc: "Recupero documenti catastali e planimetrie aggiornate.", img: "https://images.unsplash.com/photo-1608303588026-884930af2559?w=500&auto=format&fit=crop&q=60" },
+  { icon: "🏠", name: "Successioni", desc: "Gestione completa delle pratiche di successione.", img: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=500&auto=format&fit=crop&q=60" }
+];
+
+function renderServices() {
+  const list = document.getElementById("serviceList");
+  if (!list) return;
+  list.innerHTML = "";
+  services.forEach((s, index) => {
+    const card = document.createElement("div");
+    card.className = "service-card section-animate " + (index % 2 === 0 ? "slide-in-left" : "slide-in-right");
+    card.innerHTML = `
+      <img class="service-img" src="${s.img}" alt="${s.name}">
+      <div class="icon">${s.icon}</div>
+      <h3 style="font-family:'Montserrat',Arial,sans-serif;font-size:1.15rem;font-weight:900;color:var(--accent);margin-bottom:0.5rem;letter-spacing:1px;text-transform:uppercase;">${s.name}</h3>
+      <p>${s.desc}</p>
+      <a href="#" class="service-btn" onclick="navigateTo('contact', event)">Scopri di più</a>
+    `;
+    list.appendChild(card);
+  });
+  animateSections();
+}
+renderServices();
+
+// Animazioni di entrata sezioni
+function animateSections() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      }
     });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.section-animate, .slide-in-left, .slide-in-right').forEach(section => {
+    observer.observe(section);
+  });
+}
 
-    // Servizi dinamici
-    const services = [
-      { icon: "📐", name: "Pratiche Catastali", desc: "Volture, visure, planimetrie, accatastamenti e variazioni.", img: "https://media.istockphoto.com/id/2181035069/it/foto/searching-new-home-concept-with-home-model-magnifying-glass-and-imaginary-cadastral-map.webp?a=1&b=1&s=612x612&w=0&k=20&c=K2YMw5Wy2EkwK21wJTSREuKV5q9tjf0FOrDUGOCiZ3Y=" },
-      { icon: "🏗️", name: "Pratiche Edilizie", desc: "CILA, SCIA, permessi di costruire, sanatorie e condoni.", img: "https://images.unsplash.com/photo-1562957982-b1f25317aebd?w=600&auto=format&fit=crop&q=60" },
-      { icon: "🗺️", name: "Rilievi Topografici", desc: "Rilievi GPS, laser scanner, tracciamenti e frazionamenti.", img: "https://plus.unsplash.com/premium_photo-1681992175162-5d5a1b0f260a?w=1000&auto=format&fit=crop&q=60" },
-      { icon: "📊", name: "Consulenza Tecnica", desc: "Assistenza per successioni, divisioni, perizie e stime.", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&auto=format&fit=crop&q=60" },
-      { icon: "📝", name: "Visure e Planimetrie", desc: "Recupero documenti catastali e planimetrie aggiornate.", img: "https://images.unsplash.com/photo-1608303588026-884930af2559?w=500&auto=format&fit=crop&q=60" },
-      { icon: "🏠", name: "Successioni", desc: "Gestione completa delle pratiche di successione.", img: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=500&auto=format&fit=crop&q=60" }
-    ];
+// Al caricamento della pagina, ripristina la sezione attiva
+document.addEventListener('DOMContentLoaded', function() {
+  const savedPage = sessionStorage.getItem('currentPage');
+  const validPages = ['home', 'services', 'about', 'contact'];
 
-    function renderServices() {
-      const list = document.getElementById("serviceList");
-      if (!list) return;
-      list.innerHTML = "";
-      services.forEach((s, index) => {
-        const card = document.createElement("div");
-        card.className = "service-card section-animate " + (index % 2 === 0 ? "slide-in-left" : "slide-in-right");
-        card.innerHTML = `
-          <img class="service-img" src="${s.img}" alt="${s.name}">
-          <div class="icon">${s.icon}</div>
-          <h3 style="font-family:'Montserrat',Arial,sans-serif;font-size:1.15rem;font-weight:900;color:var(--accent);margin-bottom:0.5rem;letter-spacing:1px;text-transform:uppercase;">${s.name}</h3>
-          <p>${s.desc}</p>
-          <a href="#" class="service-btn" onclick="navigateTo('contact', event)">Scopri di più</a>
-        `;
-        list.appendChild(card);
-      });
-      animateSections();
-    }
-    renderServices();
+  if (savedPage && validPages.includes(savedPage)) {
+    navigateTo(savedPage);
+  } else {
+    navigateTo('home');
+  }
 
-    // Animazioni di entrata sezioni
-    function animateSections() {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-          }
-        });
-      }, { threshold: 0.15 });
-      document.querySelectorAll('.section-animate, .slide-in-left, .slide-in-right').forEach(section => {
-        observer.observe(section);
-      });
-    }
-    window.addEventListener('DOMContentLoaded', animateSections);
+  animateSections();
+});
 
-    // Form validation
+// Form validation
 document.addEventListener("DOMContentLoaded", function() {
   const form = document.getElementById("contactForm");
   const formMessage = document.getElementById("formMessage");
@@ -765,23 +792,25 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-    // Bottone torna su
-    document.addEventListener('DOMContentLoaded', function() {
-      var backToTop = document.getElementById('backToTop');
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-          backToTop.style.display = 'block';
-        } else {
-          backToTop.style.display = 'none';
-        }
-      });
-      backToTop.addEventListener('click', function() {
-        window.scrollTo({top:0, behavior:'smooth'});
-      });
-    });
+// Bottone torna su
+document.addEventListener('DOMContentLoaded', function() {
+  var backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 300) {
+      backToTop.style.display = 'block';
+    } else {
+      backToTop.style.display = 'none';
+    }
+  });
+  backToTop.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
   </script>
 </body>
 </html>
+
 
 
 
