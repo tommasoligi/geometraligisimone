@@ -1,4 +1,3 @@
 User-agent: *
-Disallow: /contatti.html
-Disallow: /servizi.html
-Disallow: /chi-siamo.html
+Disallow:
+
