@@ -44,35 +44,47 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Gestione invio modulo di contatto (se presente)
+  // Gestione invio modulo di contatto (FormSubmit, endpoint /ajax/)
   const form = document.getElementById("contactForm");
   const formMessage = document.getElementById("formMessage");
 
   if (form && formMessage) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+
+      const nome = form.nome.value.trim();
+      const email = form.email.value.trim();
+      const messaggio = form.messaggio.value.trim();
+
+      if (!nome || !/^\S+@\S+\.\S+$/.test(email) || !messaggio) {
+        formMessage.textContent = "Compila nome, email valida e messaggio.";
+        formMessage.style.color = "#b85c38";
+        return;
+      }
+
       formMessage.textContent = "Invio in corso...";
       formMessage.style.color = "#6f4e37";
 
-      const data = new FormData(form);
-
       fetch(form.action, {
         method: "POST",
-        body: data,
+        body: new FormData(form),
         headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        if (response.ok) {
-          formMessage.textContent = "Messaggio inviato! Ti ricontatterò al più presto.";
-          formMessage.style.color = "#2e7d32";
-          form.reset();
-        } else {
-          formMessage.textContent = "Errore nell'invio. Riprova più tardi.";
+      })
+        .then(response => response.json().then(data => ({ ok: response.ok, data: data })))
+        .then(res => {
+          if (res.ok && String(res.data.success) !== "false") {
+            formMessage.textContent = "Messaggio inviato! Ti ricontatterò al più presto.";
+            formMessage.style.color = "#2e7d32";
+            form.reset();
+          } else {
+            formMessage.textContent = "Errore nell'invio. Riprova o scrivi a info@simoneligi.it.";
+            formMessage.style.color = "#b85c38";
+          }
+        })
+        .catch(() => {
+          formMessage.textContent = "Impossibile inviare, controlla la tua connessione.";
           formMessage.style.color = "#b85c38";
-        }
-      }).catch(() => {
-        formMessage.textContent = "Impossibile inviare, controlla la tua connessione.";
-        formMessage.style.color = "#b85c38";
-      });
+        });
     });
   }
 });
