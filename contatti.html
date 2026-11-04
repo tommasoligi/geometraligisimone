@@ -34,7 +34,11 @@
     <section class="contact section-animate">
       <h1 class="section-title slide-in-left">Contattami</h1>
       
-      <form id="contactForm" action="https://formsubmit.co/info@simoneligi.it" method="POST" class="slide-in-right">
+      <form id="contactForm" action="https://formsubmit.co/ajax/info@simoneligi.it" method="POST" class="slide-in-right" novalidate>
+        <input type="hidden" name="_subject" value="Nuovo messaggio dal sito geometraligisimone.it">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
         <div class="form-group">
           <label for="nome">Nome e Cognome</label>
           <input type="text" id="nome" name="nome" placeholder="Il tuo nome e cognome" required>
@@ -46,12 +50,17 @@
         </div>
 
         <div class="form-group">
+          <label for="telefono">Telefono (facoltativo)</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="Il tuo numero di telefono" autocomplete="tel">
+        </div>
+
+        <div class="form-group">
           <label for="messaggio">Messaggio</label>
           <textarea id="messaggio" name="messaggio" placeholder="Scrivi qui la tua richiesta..." required></textarea>
         </div>
 
         <button type="submit" class="cta-btn-hero" style="width: 100%; justify-content: center;">Invia Messaggio</button>
-        <div id="formMessage"></div>
+        <div id="formMessage" role="status"></div>
       </form>
     </section>
   </main>
