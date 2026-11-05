@@ -1,9 +1,18 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = strip_tags(trim($_POST["name"]));
+    // Pulizia e sicurezza dei campi in ingresso
+    $name = trim($_POST["name"]);
+    $name = str_replace(array("\r", "\n"), '', $name);
+    $name = strip_tags($name);
+
     $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-    $phone = strip_tags(trim($_POST["phone"]));
-    $message = strip_tags(trim($_POST["message"]));
+    
+    $phone = trim($_POST["phone"]);
+    $phone = str_replace(array("\r", "\n"), '', $phone);
+    $phone = strip_tags($phone);
+
+    $message = trim($_POST["message"]);
+    $message = strip_tags($message);
 
     if (empty($name) || empty($message) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         http_response_code(400);
@@ -16,12 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $email_content = "Nome: $name\n";
     $email_content .= "Email: $email\n";
-    if ($phone) {
+    if (!empty($phone)) {
         $email_content .= "Telefono: $phone\n";
     }
     $email_content .= "Messaggio:\n$message\n";
 
-    $email_headers = "From: $name <$email>";
+    // Usiamo la casella postmaster esistente come mittente tecnico
+    $email_headers = "From: postmaster@simoneligi.it\r\n";
+    $email_headers .= "Reply-To: $email";
 
     if (mail($recipient, $subject, $email_content, $email_headers)) {
         http_response_code(200);
